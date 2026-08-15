@@ -1,0 +1,87 @@
+---
+import type { Copy } from '../data/copy-types';
+
+interface Props {
+  copy: Copy;
+}
+
+const { copy } = Astro.props;
+const { hero, sections } = copy;
+---
+
+<section class="hero">
+  <div class="page">
+    <h1 class="hero__title">
+      <span class="accent">{hero.titleLine1}</span><br />
+      {hero.titleLine2Prefix}<span class="accent">{hero.titleLine2Accent}</span>
+    </h1>
+
+    <p class="hero__lead">{hero.lead}</p>
+    <p class="hero__meta">{hero.meta}</p>
+
+    <div class="hero__actions">
+      <a class="btn" href={`#${sections.contact}`}>{hero.primaryCta}</a>
+      <a class="btn-quiet" href={`#${sections.practices}`}>{hero.secondaryCta}</a>
+    </div>
+  </div>
+</section>
+
+<div class="tricolour" aria-hidden="true">
+  <span></span><span></span><span></span>
+</div>
+
+<style>
+  .hero {
+    padding-block: clamp(3rem, 7vw, 5.25rem) clamp(3rem, 6.7vw, 5rem);
+  }
+
+  .hero__title {
+    font-weight: 800;
+    font-size: var(--t-hero);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    color: var(--c-text);
+    margin-bottom: clamp(1.25rem, 2.5vw, 1.875rem);
+    text-wrap: initial; /* the line break is authored, not balanced */
+  }
+
+  .hero__lead {
+    color: var(--c-text-2);
+    font-size: var(--t-lead);
+    line-height: 1.6;
+    max-width: 700px;
+    margin-bottom: 14px;
+  }
+
+  .hero__meta {
+    color: var(--c-text-3);
+    font-size: var(--t-sm);
+    margin-bottom: clamp(1.5rem, 3vw, 2.125rem);
+  }
+
+  .hero__actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: clamp(1rem, 2.2vw, 1.625rem);
+  }
+
+  .tricolour {
+    display: flex;
+    height: 3px;
+  }
+
+  .tricolour span {
+    flex: 1;
+  }
+
+  .tricolour span:nth-child(1) {
+    background: var(--c-peak-blue);
+  }
+  .tricolour span:nth-child(2) {
+    background: var(--c-peak-gold);
+  }
+  .tricolour span:nth-child(3) {
+    background: var(--c-peak-red);
+  }
+</style>

@@ -1,0 +1,87 @@
+---
+import '@fontsource-variable/bricolage-grotesque';
+import '@fontsource-variable/albert-sans';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
+import '../styles/global.css';
+import { company } from '../data/site';
+import { allLanguages, alternates, defaultLang, languages } from '../data/i18n';
+import type { Copy } from '../data/copy-types';
+
+interface Props {
+  copy: Copy;
+}
+
+const { copy } = Astro.props;
+const { meta } = copy;
+
+const canonical = new URL(copy.path, Astro.site);
+const others = alternates(copy.lang);
+
+const organisation = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: company.legalName,
+  alternateName: company.shortName,
+  url: Astro.site?.href,
+  email: company.email,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: company.city,
+    addressCountry: 'AD',
+  },
+  description: meta.description,
+};
+---
+
+<!doctype html>
+<html lang={copy.htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+
+    {
+      allLanguages.map((entry) => (
+        <link
+          rel="alternate"
+          hreflang={entry.htmlLang}
+          href={new URL(entry.path, Astro.site)}
+        />
+      ))
+    }
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL(languages[defaultLang].path, Astro.site)}
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={copy.ogLocale} />
+    {
+      others.map((other) => (
+        <meta property="og:locale:alternate" content={other.ogLocale} />
+      ))
+    }
+    <meta property="og:site_name" content={company.legalName} />
+    <meta property="og:title" content={meta.title} />
+    <meta property="og:description" content={meta.description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="theme-color" content="#0a1428" />
+
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(organisation)}
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

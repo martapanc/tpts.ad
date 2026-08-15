@@ -1,0 +1,47 @@
+---
+/**
+ * The landing page itself, in whatever language it is handed.
+ *
+ * Both `/` and `/en` render this — the only difference between them is the
+ * copy object, so a change to the page structure lands in every language.
+ */
+import Base from './Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Hero from '../components/Hero.astro';
+import PageIndex from '../components/PageIndex.astro';
+import Practices from '../components/Practices.astro';
+import CredentialsBar from '../components/CredentialsBar.astro';
+import OwnWork from '../components/OwnWork.astro';
+import CaseStudy from '../components/CaseStudy.astro';
+import Hiring from '../components/Hiring.astro';
+import CompanyFacts from '../components/CompanyFacts.astro';
+import ContactCta from '../components/ContactCta.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import type { Copy } from '../data/copy-types';
+
+interface Props {
+  copy: Copy;
+}
+
+const { copy } = Astro.props;
+---
+
+<Base copy={copy}>
+  <a class="skip-link" href="#main">{copy.a11y.skipToContent}</a>
+
+  <SiteHeader copy={copy} />
+
+  <main id="main">
+    <Hero copy={copy} />
+    <PageIndex copy={copy} />
+    <Practices copy={copy} />
+    <CredentialsBar copy={copy} />
+    <OwnWork copy={copy} />
+    <CaseStudy copy={copy} />
+    <Hiring copy={copy} />
+    <CompanyFacts copy={copy} />
+    <ContactCta copy={copy} />
+  </main>
+
+  <SiteFooter copy={copy} />
+</Base>

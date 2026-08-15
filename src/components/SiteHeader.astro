@@ -1,0 +1,232 @@
+---
+import Logo from './Logo.astro';
+import { company } from '../data/site';
+import { alternates } from '../data/i18n';
+import type { Copy } from '../data/copy-types';
+
+interface Props {
+  copy: Copy;
+}
+
+const { copy } = Astro.props;
+const { nav, a11y } = copy;
+const others = alternates(copy.lang);
+---
+
+<header class="header">
+  <div class="header__inner page">
+    <a class="brand" href={copy.path} aria-label={a11y.homeLink}>
+      <Logo size={26} />
+      <span>{company.shortName}</span>
+    </a>
+
+    <div class="header__end">
+      <nav class="nav" id="site-nav" aria-label={a11y.mainNav}>
+        {
+          nav.map((item) => (
+            <a href={item.href} class:list={[{ 'nav__link--accent': item.accent }]}>
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <nav class="langs" aria-label={a11y.languageSwitch}>
+        {
+          others.map((other) => (
+            <a href={other.path} hreflang={other.htmlLang} lang={other.htmlLang}>
+              <abbr title={other.nativeName}>{other.lang.toUpperCase()}</abbr>
+            </a>
+          ))
+        }
+      </nav>
+
+      <button
+        class="burger"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        data-nav-toggle
+        data-label-open={a11y.openMenu}
+        data-label-close={a11y.closeMenu}
+      >
+        <span class="sr-only" data-nav-label>{a11y.openMenu}</span>
+        <span class="burger__bars" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
+  const nav = document.getElementById('site-nav');
+  const label = document.querySelector<HTMLElement>('[data-nav-label]');
+
+  // Labels come from the page's own copy file, so the menu speaks the page's
+  // language rather than a hard-coded one.
+  const labels = {
+    open: toggle?.dataset.labelOpen ?? '',
+    close: toggle?.dataset.labelClose ?? '',
+  };
+
+  const setOpen = (open: boolean) => {
+    toggle?.setAttribute('aria-expanded', String(open));
+    nav?.classList.toggle('nav--open', open);
+    if (label) label.textContent = open ? labels.close : labels.open;
+  };
+
+  toggle?.addEventListener('click', () => {
+    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  // Following an in-page link should put the menu away again.
+  nav?.addEventListener('click', (event) => {
+    if ((event.target as HTMLElement).closest('a')) setOpen(false);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') setOpen(false);
+  });
+</script>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: color-mix(in srgb, var(--c-bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid transparent;
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 76px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--c-text);
+  }
+
+  .header__end {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    font-size: var(--t-sm);
+    color: var(--c-text-2);
+  }
+
+  .nav a {
+    transition: color 0.15s ease;
+  }
+
+  .nav a:hover {
+    color: var(--c-text);
+  }
+
+  .nav__link--accent {
+    color: var(--c-gold-soft);
+  }
+
+  .langs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 24px;
+    border-left: 1px solid var(--c-rule-strong);
+    font-size: var(--t-xs);
+    color: var(--c-text-3);
+  }
+
+  .langs a {
+    transition: color 0.15s ease;
+  }
+
+  .langs a:hover {
+    color: var(--c-text);
+  }
+
+  .langs abbr {
+    text-decoration: none;
+    letter-spacing: 0.06em;
+  }
+
+  .burger {
+    display: none;
+    background: none;
+    border: 1px solid var(--c-rule-strong);
+    border-radius: var(--radius-sm);
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .burger__bars,
+  .burger__bars::before,
+  .burger__bars::after {
+    display: block;
+    width: 18px;
+    height: 1.5px;
+    background: var(--c-text);
+    content: '';
+  }
+
+  .burger__bars::before {
+    transform: translateY(-6px);
+  }
+
+  .burger__bars::after {
+    transform: translateY(4.5px);
+  }
+
+  @media (max-width: 800px) {
+    .header__end {
+      gap: 16px;
+    }
+
+    .burger {
+      display: block;
+    }
+
+    .langs {
+      padding-left: 0;
+      border-left: 0;
+    }
+
+    .nav {
+      position: absolute;
+      inset: 100% 0 auto;
+      display: none;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 8px var(--gutter) 20px;
+      background: var(--c-bg);
+      border-block: 1px solid var(--c-rule);
+    }
+
+    .nav--open {
+      display: flex;
+    }
+
+    .nav a {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--c-rule);
+      font-size: var(--t-lead);
+    }
+  }
+</style>

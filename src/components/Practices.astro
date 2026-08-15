@@ -1,0 +1,68 @@
+---
+import type { Copy } from '../data/copy-types';
+
+interface Props {
+  copy: Copy;
+}
+
+const { copy } = Astro.props;
+const { practices, sections } = copy;
+---
+
+<section class="practices" id={sections.practices}>
+  <div class="page">
+    <div class="practices__inner">
+      <h2 class="practices__title">{practices.title}</h2>
+      <p class="lead practices__intro">{practices.intro}</p>
+
+      {
+        practices.items.map((item) => (
+          <article class="practice">
+            <h3 class="practice__title">{item.title}</h3>
+            <p class="lead">{item.body}</p>
+            <p class="muted practice__lead-by">
+              {item.leadIn}
+              <b class="accent">{item.leadName}</b>
+              {item.leadTail}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .practices__inner {
+    max-width: 800px;
+    padding-block: var(--section-y);
+  }
+
+  .practices__title {
+    font-weight: 700;
+    font-size: var(--t-h2);
+    margin-bottom: 10px;
+  }
+
+  .practices__intro {
+    margin-bottom: 44px;
+  }
+
+  .practice + .practice {
+    margin-top: 44px;
+  }
+
+  .practice__title {
+    font-weight: 600;
+    font-size: var(--t-h3);
+    margin-bottom: 10px;
+  }
+
+  .practice__lead-by {
+    margin-top: 8px;
+  }
+
+  .practice__lead-by b {
+    font-weight: 600;
+  }
+</style>

@@ -1,0 +1,94 @@
+---
+import type { Copy } from '../data/copy-types';
+
+interface Props {
+  copy: Copy;
+}
+
+const { copy } = Astro.props;
+const { index } = copy;
+---
+
+<nav class="index" aria-label={index.label}>
+  <div class="page">
+    <p class="index__label">{index.label}</p>
+    <ol class="index__list">
+      {
+        index.items.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class:list={['index__item', { 'index__item--accent': item.accent }]}
+            >
+              <span class="index__n" aria-hidden="true">
+                {item.n}
+              </span>
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</nav>
+
+<style>
+  .index {
+    border-bottom: 1px solid var(--c-rule);
+    padding-block: 26px 30px;
+  }
+
+  .index__label {
+    font-size: var(--t-xs);
+    color: var(--c-text-3);
+    margin-bottom: 16px;
+  }
+
+  .index__list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0 28px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: none;
+  }
+
+  .index__item {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    border-top: 1px solid var(--c-rule-strong);
+    padding-top: 13px;
+    color: var(--c-text);
+    font-size: var(--t-sm);
+    transition: border-color 0.15s ease;
+  }
+
+  .index__item:hover {
+    border-top-color: var(--c-gold);
+  }
+
+  .index__item--accent {
+    color: var(--c-gold-soft);
+  }
+
+  .index__n {
+    color: var(--c-gold);
+    font-family: var(--font-display);
+    font-weight: 700;
+  }
+
+  @media (max-width: 900px) {
+    .index__list {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .index__list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

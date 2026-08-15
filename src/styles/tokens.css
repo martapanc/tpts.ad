@@ -1,0 +1,61 @@
+/*
+ * Design tokens — extracted from "Taylor Pancaldi Landing.dc.html", version 6A.
+ * Every value here traces back to a literal in that concept file; change them
+ * here rather than in components.
+ */
+
+:root {
+  /* ---- Surfaces ---- */
+  --c-bg: #0a1428; /* page background */
+  --c-bg-sunk: #080f1f; /* credential strip, footer */
+  --c-rule: #17294c; /* section hairlines */
+  --c-rule-strong: #22375f; /* index rules, underlines */
+
+  /* ---- Text ---- */
+  --c-text: #e8ecf4;
+  --c-text-2: #9aa7bd;
+  --c-text-3: #6b7a94;
+
+  /* ---- Accent ---- */
+  --c-gold: #c9a227; /* solid fills, index numerals */
+  --c-gold-soft: #e3c25c; /* accent text, links */
+  --c-gold-tint: rgba(201, 162, 39, 0.14);
+  --c-gold-line: rgba(227, 194, 92, 0.45);
+  --c-on-gold: #080f1f;
+
+  /* ---- Brand mark (the three peaks) ---- */
+  --c-peak-blue: #2f4c9e;
+  --c-peak-gold: #c9a227;
+  --c-peak-red: #c0392b;
+
+  /* ---- Paper (invoice card) ---- */
+  --c-paper: #f7f5ef;
+  --c-paper-ink: #1b2233;
+  --c-paper-rule: #e4e0d5;
+
+  /* ---- Type ---- */
+  --font-display: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-body: 'Albert Sans Variable', 'Albert Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* Fluid sizes: the second clamp value reproduces the 1180px comp exactly. */
+  --t-hero: clamp(2.5rem, 6.7vw, 4.9rem); /* 82px */
+  --t-h2-lg: clamp(1.85rem, 3.6vw, 2.625rem); /* 42px */
+  --t-h2: clamp(1.6rem, 2.9vw, 2.125rem); /* 34px */
+  --t-h2-sm: clamp(1.5rem, 2.4vw, 1.75rem); /* 28px */
+  --t-quote: clamp(1.35rem, 2.55vw, 1.875rem); /* 30px */
+  --t-h3: clamp(1.25rem, 1.95vw, 1.4375rem); /* 23px */
+  --t-lead: clamp(1.0625rem, 1.6vw, 1.1875rem); /* 19px */
+  --t-body: 1rem; /* 16px */
+  --t-sm: 0.96875rem; /* 15.5px */
+  --t-xs: 0.90625rem; /* 14.5px */
+  --t-xxs: 0.84375rem; /* 13.5px */
+
+  /* ---- Layout ---- */
+  --page-max: 1180px;
+  --gutter: clamp(1.25rem, 6.4vw, 4.75rem); /* 76px at full width */
+  --section-y: clamp(2.5rem, 4.7vw, 3.5rem); /* 56px */
+
+  --radius-sm: 2px;
+  --radius-md: 3px;
+}

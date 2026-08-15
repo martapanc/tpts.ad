@@ -1,0 +1,60 @@
+---
+import type { Copy } from '../data/copy-types';
+
+interface Props {
+  copy: Copy;
+}
+
+const { copy } = Astro.props;
+const { hiring, sections } = copy;
+---
+
+<section class="hiring" id={sections.hiring}>
+  <div class="page">
+    <div class="hiring__inner ruled">
+      <h2 class="hiring__title">{hiring.title}</h2>
+      <p class="lead hiring__intro">{hiring.intro}</p>
+
+      <ol class="hiring__steps">
+        {
+          hiring.steps.map((step) => (
+            <li class="lead">
+              <b>{step.lead}</b>
+              {step.body}
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hiring__inner {
+    max-width: 800px;
+  }
+
+  .hiring__title {
+    font-weight: 700;
+    font-size: var(--t-h2);
+    margin-bottom: 10px;
+  }
+
+  .hiring__intro {
+    margin-bottom: 30px;
+  }
+
+  .hiring__steps {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hiring__steps b {
+    color: var(--c-text);
+    font-weight: 600;
+  }
+</style>

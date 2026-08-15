@@ -1,0 +1,45 @@
+---
+import type { Copy } from '../data/copy-types';
+
+interface Props {
+  copy: Copy;
+}
+
+const { copy } = Astro.props;
+const { ownWork, sections } = copy;
+---
+
+<section class="own-work" id={sections.projects}>
+  <div class="page">
+    <div class="own-work__inner">
+      <p class="own-work__statement">
+        {ownWork.statement}<span class="accent">{ownWork.statementAccent}</span>
+      </p>
+      <p class="own-work__note">{ownWork.note}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .own-work__inner {
+    max-width: 900px;
+    padding-block: var(--section-y);
+  }
+
+  .own-work__statement {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--t-quote);
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    color: var(--c-text);
+  }
+
+  .own-work__note {
+    color: var(--c-text-3);
+    font-size: var(--t-body);
+    line-height: 1.65;
+    margin-top: 22px;
+    max-width: 680px;
+  }
+</style>

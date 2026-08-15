@@ -1,0 +1,131 @@
+---
+import type { Copy } from '../data/copy-types';
+
+interface Props {
+  copy: Copy;
+}
+
+const { copy } = Astro.props;
+const { caseStudy } = copy;
+const { invoice } = caseStudy;
+---
+
+<section class="case">
+  <div class="page">
+    <div class="case__inner ruled">
+      <div class="case__text">
+        <h2 class="case__title">{caseStudy.title}</h2>
+        <p class="lead">{caseStudy.body}</p>
+        <p class="muted case__note">{caseStudy.note}</p>
+        {
+          caseStudy.linkHref && (
+            <a class="case__link" href={caseStudy.linkHref}>
+              {caseStudy.link} <span aria-hidden="true">→</span>
+            </a>
+          )
+        }
+      </div>
+
+      <!-- Decorative sample of the product's own output. -->
+      <figure class="invoice" aria-hidden="true">
+        <div class="invoice__head">
+          <b>{invoice.brand}</b><span>{invoice.number}</span>
+        </div>
+        {
+          invoice.lines.map((line) => (
+            <div class="invoice__row">
+              <span>{line.label}</span>
+              <span>{line.amount}</span>
+            </div>
+          ))
+        }
+        <div class="invoice__total">
+          <span>{invoice.totalLabel}</span><span>{invoice.totalAmount}</span>
+        </div>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<style>
+  .case__inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .case__text {
+    max-width: 560px;
+  }
+
+  .case__title {
+    font-weight: 700;
+    font-size: var(--t-h2);
+    margin-bottom: 12px;
+  }
+
+  .case__note {
+    margin-block: 10px 18px;
+  }
+
+  .case__link {
+    color: var(--c-gold-soft);
+    font-size: var(--t-sm);
+    border-bottom: 1px solid var(--c-gold-line);
+    padding-bottom: 2px;
+  }
+
+  .invoice {
+    margin: 0;
+    width: 260px;
+    padding: 18px 20px;
+    background: var(--c-paper);
+    color: var(--c-paper-ink);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    line-height: 1.6;
+    box-shadow: 0 16px 40px -14px rgba(0, 0, 0, 0.5);
+    transform: rotate(-1deg);
+  }
+
+  .invoice__head,
+  .invoice__row,
+  .invoice__total {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .invoice__head {
+    border-bottom: 2px solid var(--c-gold);
+    padding-bottom: 7px;
+    margin-bottom: 8px;
+  }
+
+  .invoice__head b {
+    font-family: var(--font-display);
+    font-size: 13px;
+    color: var(--c-gold);
+  }
+
+  .invoice__row {
+    border-bottom: 1px solid var(--c-paper-rule);
+    padding-block: 3px;
+  }
+
+  .invoice__total {
+    border-top: 1.5px solid var(--c-paper-ink);
+    padding-top: 5px;
+    font-weight: 500;
+  }
+
+  @media (max-width: 860px) {
+    .case__inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      justify-items: start;
+    }
+  }
+</style>
