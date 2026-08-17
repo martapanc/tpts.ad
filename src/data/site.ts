@@ -22,8 +22,9 @@ export const company = {
 export const people = {
   product: {
     name: 'Marta Pancaldi',
+    website: 'https://martacodes.it'
   },
-  // TODO: the infrastructure lead's name is still pending, so each copy file
-  // carries a language-appropriate placeholder. Once it is known, add it here
-  // and point both copy files at it — a name is not language-specific.
+  it: {
+    name: 'Teo Taylor'
+  }
 } as const;

@@ -1,9 +1,9 @@
 /**
- * English copy — served at `/en`.
+ * English copy – served at `/en`.
  *
  * This is the original text from the concept file (version 6A), which was
  * itself still a draft in places. Where the Catalan has since moved on, the
- * English follows it rather than the concept — see the note on the hero below.
+ * English follows it rather than the concept – see the note on the hero below.
  *
  * Keep this file and `copy.ca.ts` in step: both implement `Copy`, so a missing
  * or renamed key is a type error rather than a silently untranslated page.
@@ -30,7 +30,7 @@ export const copy: Copy = {
   sections,
 
   meta: {
-    title: `${company.legalName} — Software engineering and IT services`,
+    title: `${company.legalName} – Software engineering and IT services`,
     description:
       'Two engineering practices under one Andorran company: product development, and infrastructure design and operations. For clients across the EU, the UK and the United States.',
   },
@@ -43,12 +43,12 @@ export const copy: Copy = {
   ],
 
   hero: {
-    // Two lines by design — the break is authored, not wrapped. Keep the second
+    // Two lines by design – the break is authored, not wrapped. Keep the second
     // line short enough to fit, in any language.
     titleLine1: 'Software engineering',
     titleLine2Prefix: 'and ',
-    titleLine2Accent: 'IT services.',
-    lead: 'Two engineering practices under one Andorran company: product development, and infrastructure design and operations. Each is contracted on its own for clients across the EU, the UK and the United States, and together on projects that need both.',
+    titleLine2Accent: 'IT services',
+    lead: 'Two engineering practices under one Andorran company: product development, and infrastructure design and operations.\nEach is contracted on its own for clients across the EU, the UK and the United States, and together on projects that need both.',
     meta: 'Remote, CET · previously at Sky, Booking.com and enterprise SaaS platforms',
     primaryCta: 'Contact us',
     secondaryCta: 'What we do',
@@ -57,21 +57,22 @@ export const copy: Copy = {
   practices: {
     title: 'Two practices.',
     intro:
-      'Each has its own lead, its own engagements and its own contract. Most work involves one of the two; where a project needs software and the platform under it, we take both on. Not branding, not SEO, not social media.',
+      'Each has its own lead, its own engagements and its own contract. Most work involves one of the two; where a project needs software and the platform under it, we take both on.',
     items: [
       {
         title: 'Product development',
-        body: 'Full-stack engineering as an embedded senior developer in your team, or defined projects delivered end-to-end — payments, pricing systems, SSO, accounting platforms. TypeScript, React and Next.js, Node.js, Java and Spring Boot, Python, AWS.',
+        body: 'Full-stack engineering as an embedded senior developer in your team, or defined projects delivered end-to-end – payments, pricing systems, SSO, accounting platforms.\nTypeScript, React and Next.js, Node.js, Java and Spring Boot, Python, AWS.',
         leadIn: 'Led by ',
         leadName: people.product.name,
-        leadTail: ' — eight years across Booking.com, Appetize and Resourcify.',
+        leadWebsite: people.product.website,
+        leadTail: ' – eight years across Booking.com, Appetize and Resourcify.',
       },
       {
         title: 'Infrastructure and operations',
-        body: 'Infrastructure design, operations and support built on broadcast-scale experience — networking, deployment, monitoring and backup, kept reliable, secure and boring in the best possible sense.',
+        body: 'Infrastructure design, operations and support built on broadcast-scale experience – networking, deployment, monitoring and backup, kept reliable, secure and boring in the best possible sense.',
         leadIn: 'Led by ',
-        leadName: 'Teo Taylor', // TODO: pending
-        leadTail: ' — infrastructure and operations, ex Sky UK.',
+        leadName: people.it.name,
+        leadTail: ' – infrastructure and operations, ex Sky UK.',
       },
     ],
   },
@@ -88,21 +89,21 @@ export const copy: Copy = {
       'Client engagements take most of our time. The rest goes into our own projects, and that is where the two practices work as one team: ',
     statementAccent:
       'one of us builds the application, the other runs the platform it lives on.',
-    note: 'They are the projects where we choose the constraints, and they are in production — we use them to run the company. FlexInvoice is the current example.',
+    note: 'They are the projects where we choose the constraints, and they are in production – we use them to run the company. FlexInvoice is the current example.',
   },
 
   caseStudy: {
     title: 'FlexInvoice',
     body: 'The invoicing system we built for our own operations: recurring invoices in two clicks, receipts merged into the final PDF, totals exact by construction. Backend and interface on one side, hosting, deployment and backups on the other.',
     note: "It's on the site because it shows how we build and run something when the only stakeholder is us.",
-    // TODO: the case study page does not exist yet — the link is hidden until it does.
+    // TODO: the case study page does not exist yet – the link is hidden until it does.
     link: 'Read the case study',
     linkHref: '',
     invoice: {
       brand: 'TPTS',
       number: 'No. 2026-081',
       lines: [
-        { label: 'Development — July', amount: '€ 7,200.00' },
+        { label: 'Development – July', amount: '€ 7,200.00' },
         { label: 'Retainer', amount: '€ 1,400.00' },
       ],
       totalLabel: 'Total',
@@ -113,15 +114,15 @@ export const copy: Copy = {
   hiring: {
     title: 'Working with an Andorran company is simpler than it sounds.',
     intro:
-      "Because we're resident in Andorra, direct employment isn't an option — a standard B2B services agreement with TPTS is, and your legal team won't be the first to review one.",
+      "Because we're resident in Andorra, direct employment isn't an option – a standard B2B services agreement with TPTS is, and your legal team won't be the first to review one.",
     steps: [
       {
         lead: 'First,',
-        body: ' you contract TPTS SL — one agreement with a registered Andorran company, naming the practice and the engineer doing the work.',
+        body: ' you contract TPTS SL – one agreement with a registered Andorran company, naming the practice and the engineer doing the work.',
       },
       {
         lead: 'Then,',
-        body: ' we embed or deliver — day-rate engineering inside your team, or a scoped project end-to-end. EU citizens, remote, CET.',
+        body: ' we embed or deliver – day-rate engineering inside your team, or a scoped project end-to-end. EU citizens, remote, CET.',
       },
       {
         lead: 'Every month,',
@@ -156,7 +157,7 @@ export const copy: Copy = {
 
   contact: {
     title: 'Enquiries and new engagements',
-    body: "Send a short description of the work — scope, stack, timeframe if you have one. Say which practice it concerns if you already know; if not, we'll tell you. We reply within two working days.",
+    body: "Send a short description of the work – scope, stack, timeframe if you have one. Say which practice it concerns if you already know; if not, we'll tell you. We reply within two working days.",
     cta: 'Contact us',
   },
 
@@ -174,7 +175,7 @@ export const copy: Copy = {
     mainNav: 'Main navigation',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
-    homeLink: `${company.shortName} — home`,
+    homeLink: `${company.shortName} – home`,
     languageSwitch: 'Change language',
   },
 };

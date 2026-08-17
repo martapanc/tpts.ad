@@ -1,5 +1,5 @@
 /**
- * Catalan copy — the primary language, served at `/`.
+ * Catalan copy – the primary language, served at `/`.
  *
  * The English concept (version 6A) was the source; several passages there were
  * still drafts, so the Catalan is a first pass too. Lines flagged DRAFT are the
@@ -30,7 +30,7 @@ export const copy: Copy = {
   sections,
 
   meta: {
-    title: `${company.legalName} — Enginyeria de programari i serveis informàtics`,
+    title: `${company.legalName} – Enginyeria de programari i serveis informàtics`,
     description:
       "Dues àrees d'enginyeria sota una societat andorrana: desenvolupament de producte, i disseny i operació d'infraestructura. Per a clients de la UE, el Regne Unit i els Estats Units.",
   },
@@ -43,12 +43,12 @@ export const copy: Copy = {
   ],
 
   hero: {
-    // Two lines by design — the break is authored, not wrapped. Keep the second
+    // Two lines by design – the break is authored, not wrapped. Keep the second
     // line short enough to fit, in any language.
     titleLine1: 'Enginyeria de programari',
     titleLine2Prefix: 'i ',
-    titleLine2Accent: 'serveis informàtics.',
-    lead: "Dues àrees d'enginyeria sota una mateixa societat andorrana: desenvolupament de producte, i disseny i operació d'infraestructura. Cadascuna es contracta per separat per a clients de la UE, el Regne Unit i els Estats Units, i totes dues alhora en els projectes que necessiten les dues coses.",
+    titleLine2Accent: 'serveis informàtics',
+    lead: "Dues àrees d'enginyeria sota una mateixa societat andorrana: desenvolupament de producte, i disseny i operació d'infraestructura.\nCadascuna es contracta per separat per a clients de la UE, el Regne Unit i els Estats Units, i totes dues alhora en els projectes que necessiten les dues coses.",
     meta: 'En remot, CET · experiència prèvia a Sky, Booking.com i plataformes SaaS corporatives',
     primaryCta: 'Contacteu-nos',
     secondaryCta: 'Què fem',
@@ -57,23 +57,24 @@ export const copy: Copy = {
   practices: {
     title: 'Dues àrees.',
     intro:
-      "Cada àrea té el seu responsable, els seus encàrrecs i el seu contracte. La major part de la feina n'implica només una; quan un projecte necessita el programari i la plataforma que hi ha a sota, ens encarreguem de totes dues. No fem branding, ni SEO, ni xarxes socials.",
+      "Cada àrea té el seu responsable, els seus encàrrecs i el seu contracte. La major part de la feina n'implica només una; quan un projecte necessita el programari i la plataforma que hi ha a sota, ens encarreguem de totes dues.",
     items: [
       {
         title: 'Desenvolupament de producte',
-        body: "Enginyeria full-stack com a desenvolupadora sènior integrada al vostre equip, o projectes definits lliurats d'extrem a extrem: pagaments, sistemes de preus, SSO, plataformes de comptabilitat. TypeScript, React i Next.js, Node.js, Java i Spring Boot, Python, AWS.",
+        body: "Enginyeria full-stack com a desenvolupadora sènior integrada al vostre equip, o projectes definits lliurats d'extrem a extrem: pagaments, sistemes de preus, SSO, plataformes de comptabilitat.\nTypeScript, React i Next.js, Node.js, Java i Spring Boot, Python, AWS.",
         leadIn: 'Al capdavant, ',
         leadName: people.product.name,
-        leadTail: ' — vuit anys entre Booking.com, Appetize i Resourcify.',
+        leadWebsite: people.product.website,
+        leadTail: ' – vuit anys entre Booking.com, Appetize i Resourcify.',
       },
       {
         title: 'Infraestructura i operacions',
         // DRAFT: "avorrits en el millor sentit" is a direct rendering of the
-        // English joke — worth a second opinion on whether it lands in Catalan.
+        // English joke – worth a second opinion on whether it lands in Catalan.
         body: "Disseny, operació i suport d'infraestructura amb experiència a escala de broadcast: xarxa, desplegament, monitoratge i còpies de seguretat, mantinguts fiables, segurs i avorrits en el millor sentit de la paraula.",
         leadIn: 'Al capdavant, ',
-        leadName: 'Teo Taylor',
-        leadTail: ' — infraestructura i operacions, ex Sky UK.',
+        leadName: people.it.name,
+        leadTail: ' – infraestructura i operacions, ex Sky UK.',
       },
     ],
   },
@@ -97,14 +98,14 @@ export const copy: Copy = {
     title: 'FlexInvoice',
     body: 'El sistema de facturació que hem construït per a la nostra pròpia operativa: factures recurrents en dos clics, rebuts integrats al PDF final, totals exactes per construcció. El backend i la interfície en una banda; allotjament, desplegament i còpies de seguretat en l’altra.',
     note: "És al web perquè mostra com construïm i mantenim una cosa quan l'únic client som nosaltres.",
-    // TODO: the case study page does not exist yet — the link is hidden until it does.
+    // TODO: the case study page does not exist yet – the link is hidden until it does.
     link: 'Llegiu el cas pràctic',
     linkHref: '',
     invoice: {
       brand: 'TPTS',
       number: 'Núm. 2026-081',
       lines: [
-        { label: 'Desenvolupament — juliol', amount: '7.200,00 €' },
+        { label: 'Desenvolupament – juliol', amount: '7.200,00 €' },
         { label: 'Retainer', amount: '1.400,00 €' },
       ],
       totalLabel: 'Total',
@@ -177,7 +178,7 @@ export const copy: Copy = {
     mainNav: 'Navegació principal',
     openMenu: 'Obre el menú',
     closeMenu: 'Tanca el menú',
-    homeLink: `${company.shortName} — inici`,
+    homeLink: `${company.shortName} – inici`,
     languageSwitch: 'Canvia d’idioma',
   },
 };

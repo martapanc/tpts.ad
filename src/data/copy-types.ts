@@ -17,6 +17,7 @@ export interface Practice {
   body: string;
   leadIn: string;
   leadName: string;
+  leadWebsite?: string;
   leadTail: string;
 }
 

@@ -22,7 +22,11 @@ const { practices, sections } = copy;
             <p class="lead">{item.body}</p>
             <p class="muted practice__lead-by">
               {item.leadIn}
-              <b class="accent">{item.leadName}</b>
+              {item.leadWebsite ? (
+                  <a class="accent" href={item.leadWebsite}>{item.leadName}</a>
+              ) : (
+                  <b class="accent">{item.leadName}</b>
+              )}
               {item.leadTail}
             </p>
           </article>
@@ -62,7 +66,30 @@ const { practices, sections } = copy;
     margin-top: 8px;
   }
 
-  .practice__lead-by b {
+  .practice__lead-by b,
+  .practice__lead-by a {
     font-weight: 600;
+  }
+
+  /* The name reads as plain text until it is hovered, when the accent rule
+     underneath reveals it as a link — same hairline as `.btn-quiet`. */
+  .practice__lead-by a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: transparent;
+    text-underline-offset: 4px;
+    transition:
+      color 0.15s ease,
+      text-decoration-color 0.15s ease;
+  }
+
+  .practice__lead-by a:hover {
+    color: var(--c-gold-soft);
+    text-decoration-color: var(--c-gold-line);
+  }
+
+  /* Keyboard users get the same cue, on top of the focus ring. */
+  .practice__lead-by a:focus-visible {
+    text-decoration-color: var(--c-gold-line);
   }
 </style>
