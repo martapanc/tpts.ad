@@ -40,7 +40,6 @@ export const copy: Copy = {
     { label: 'Projects', href: `#${sections.projects}` },
     { label: 'How we work', href: `#${sections.hiring}` },
     { label: 'Company', href: `#${sections.company}` },
-    { label: 'Contact', href: `#${sections.contact}`, accent: true },
   ],
 
   hero: {
@@ -53,17 +52,6 @@ export const copy: Copy = {
     meta: 'Remote, CET · previously at Sky, Booking.com and enterprise SaaS platforms',
     primaryCta: 'Contact us',
     secondaryCta: 'What we do',
-  },
-
-  index: {
-    label: 'On this page',
-    items: [
-      { n: '01', label: 'What we do', href: `#${sections.practices}` },
-      { n: '02', label: 'Our own projects', href: `#${sections.projects}` },
-      { n: '03', label: 'How to hire us', href: `#${sections.hiring}` },
-      { n: '04', label: 'The company', href: `#${sections.company}` },
-      { n: '05', label: 'Contact', href: `#${sections.contact}`, accent: true },
-    ],
   },
 
   practices: {
@@ -82,7 +70,7 @@ export const copy: Copy = {
         title: 'Infrastructure and operations',
         body: 'Infrastructure design, operations and support built on broadcast-scale experience — networking, deployment, monitoring and backup, kept reliable, secure and boring in the best possible sense.',
         leadIn: 'Led by ',
-        leadName: '[Partner name]', // TODO: pending
+        leadName: 'Teo Taylor', // TODO: pending
         leadTail: ' — infrastructure and operations, ex Sky UK.',
       },
     ],
@@ -92,7 +80,7 @@ export const copy: Copy = {
     { pre: 'Shipped at ', strong: 'Booking.com' },
     { pre: 'Shipped at ', strong: 'Sky' },
     { pre: 'Enterprise ', strong: 'SaaS · SSO · payments' },
-    { pre: 'Clients in ', strong: 'UK · DE · NL · US' },
+    { pre: 'Clients in ', strong: 'UK · DE · US' },
   ],
 
   ownWork: {
@@ -144,18 +132,24 @@ export const copy: Copy = {
 
   company: {
     title: 'The company',
-    body: `${company.legalName} is a Societat Limitada registered in ${company.city}. Two engineers, two practices, one contracting entity.`,
+    // Line breaks are honoured here: one `\n` starts a new line, two leave a
+    // blank line. Anything else wraps normally.
+    body: `${company.legalName} is a Societat Limitada registered in ${company.city}.\nTwo engineers, two practices, one contracting entity.`,
     rows: [
       { label: 'Entity', value: company.legalName },
       { label: 'Registration', value: company.nrt, mono: true },
       { label: 'Base', value: `${company.city} · remote, ${company.timezone}` },
       {
         label: 'Practices',
-        value: 'Product development · infrastructure and operations',
+        value: 'Product design & development · infrastructure & operations',
       },
       {
         label: 'Coverage',
-        value: 'EU · UK · US · B2B contracts · CA, EN, ES, IT',
+        value: 'B2B contracts in the EU, the UK and the US so far (more countries possible)',
+      },
+      {
+        label: 'Languages',
+        value: 'English · Italian · French · German · Spanish · Catalan',
       },
     ],
   },
@@ -167,8 +161,7 @@ export const copy: Copy = {
   },
 
   footer: {
-    copyright: `© ${company.founded} ${company.legalName} · Andorra`,
-    // TODO: these three pages still need to be written, in both languages.
+    copyright: `© ${new Date().getFullYear()} · ${company.legalName} · Andorra`,
     links: [
       { label: 'Legal notice', href: '/en/legal-notice' },
       { label: 'Privacy', href: '/en/privacy' },

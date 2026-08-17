@@ -87,6 +87,58 @@ const others = alternates(copy.lang);
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') setOpen(false);
   });
+
+  // Highlight whichever section's nav link is currently in view: whichever
+  // section covers the most visible area below the header. Area-based
+  // rather than a fixed "activation line" so a short trailing section
+  // (e.g. Contact, sitting right above the footer) can still win once it's
+  // what's actually on screen, without needing a page-bottom special case.
+  const header = document.querySelector<HTMLElement>('.header');
+  const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.nav a[href^="#"]'));
+  const sections = navLinks
+    .map((link) => document.getElementById(link.getAttribute('href')!.slice(1)))
+    .filter((el): el is HTMLElement => el !== null);
+
+  if (sections.length) {
+    const setActive = (id: string | null) => {
+      for (const link of navLinks) {
+        link.classList.toggle('nav__link--active', id !== null && link.getAttribute('href') === `#${id}`);
+      }
+    };
+
+    const updateActive = () => {
+      const viewTop = header?.getBoundingClientRect().height ?? 0;
+      const viewBottom = window.innerHeight;
+
+      let current: string | null = null;
+      let bestOverlap = 0;
+      for (const section of sections) {
+        const rect = section.getBoundingClientRect();
+        const overlap = Math.min(rect.bottom, viewBottom) - Math.max(rect.top, viewTop);
+        if (overlap > bestOverlap) {
+          bestOverlap = overlap;
+          current = section.id;
+        }
+      }
+      setActive(current);
+    };
+
+    let ticking = false;
+    document.addEventListener(
+      'scroll',
+      () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          ticking = false;
+          updateActive();
+        });
+      },
+      { passive: true },
+    );
+
+    updateActive();
+  }
 </script>
 
 <style>
@@ -104,7 +156,7 @@ const others = alternates(copy.lang);
     align-items: center;
     justify-content: space-between;
     gap: 24px;
-    min-height: 76px;
+    min-height: var(--header-h);
   }
 
   .brand {
@@ -141,6 +193,13 @@ const others = alternates(copy.lang);
 
   .nav__link--accent {
     color: var(--c-gold-soft);
+  }
+
+  .nav__link--active {
+    color: var(--c-gold-soft);
+    text-decoration: underline;
+    text-decoration-color: var(--c-gold-line);
+    text-underline-offset: 6px;
   }
 
   .langs {

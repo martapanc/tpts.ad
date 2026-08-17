@@ -61,9 +61,6 @@ Search the source for `TODO` and `DRAFT`. Currently open:
 
 - **Partner name** — renders as `[Nom del soci]` / `[Partner name]` in the
   infrastructure practice. Once known it belongs in `site.ts`, not the copy files.
-- **NRT number** — placeholder `NRT L-000000-X` in the company table and footer.
-- **Contact email** — `hola@taylorpancaldi.com`, unconfirmed. The Contact button
-  is a `mailto:`; swap for a form if you'd rather.
 - **Domain** — `astro.config.mjs` assumes `taylorpancaldi.com` for canonical,
   OG and hreflang URLs. These are wrong until it points at the real domain.
 - **FlexInvoice case study** — the page doesn't exist, so `linkHref` is empty in

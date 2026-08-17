@@ -1,5 +1,9 @@
 ---
+import Logo from './Logo.astro';
+import { company as companyFacts } from '../data/site';
 import type { Copy } from '../data/copy-types';
+
+const { shortName } = companyFacts;
 
 interface Props {
   copy: Copy;
@@ -9,12 +13,19 @@ const { copy } = Astro.props;
 const { company: companyCopy, sections } = copy;
 ---
 
-<section class="company" id={sections.company}>
+<section class="company full-rule" id={sections.company}>
   <div class="page">
     <div class="company__inner ruled">
       <div>
         <h2 class="company__title">{companyCopy.title}</h2>
-        <p class="lead">{companyCopy.body}</p>
+        <p class="lead company__body">{companyCopy.body}</p>
+        {/* Decorative lockup — the mark is aria-hidden inside Logo, and the
+            wordmark repeats the company name already in the heading above,
+            so it is hidden from assistive technology too. */}
+        <div class="company__mark" aria-hidden="true">
+          <Logo size={112} />
+          <span class="company__wordmark">{shortName}</span>
+        </div>
       </div>
 
       <dl class="facts">
@@ -40,10 +51,35 @@ const { company: companyCopy, sections } = copy;
     padding-bottom: calc(var(--section-y) + 4px);
   }
 
+  /* Newlines written in `company.body` render as line breaks; everything else
+     wraps as usual. One `\n` starts a new line, two leave a blank line. */
+  .company__body {
+    white-space: pre-line;
+  }
+
   .company__title {
     font-weight: 700;
     font-size: var(--t-h2-sm);
     margin-bottom: 12px;
+  }
+
+  /* Fills the space the short intro leaves beside the facts list. Purely
+     decorative, so it goes away once the columns stack. */
+  .company__mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 52px;
+  }
+
+  .company__wordmark {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 46px;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--c-text);
   }
 
   .facts {
@@ -82,6 +118,10 @@ const { company: companyCopy, sections } = copy;
     .company__inner {
       grid-template-columns: 1fr;
       gap: 36px;
+    }
+
+    .company__mark {
+      display: none;
     }
   }
 

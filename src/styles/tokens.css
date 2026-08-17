@@ -52,6 +52,7 @@
   --t-xxs: 0.84375rem; /* 13.5px */
 
   /* ---- Layout ---- */
+  --header-h: 76px; /* matches .header__inner min-height */
   --page-max: 1180px;
   --gutter: clamp(1.25rem, 6.4vw, 4.75rem); /* 76px at full width */
   --section-y: clamp(2.5rem, 4.7vw, 3.5rem); /* 56px */

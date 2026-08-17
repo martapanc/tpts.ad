@@ -10,6 +10,7 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 16px);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -74,9 +75,13 @@ svg {
   padding-inline: var(--gutter);
 }
 
-/* A section whose top edge is drawn by a hairline that stops at the gutters. */
-.ruled {
+/* A hairline that spans the full viewport width, drawn above a section. */
+.full-rule {
   border-top: 1px solid var(--c-rule);
+}
+
+/* Vertical rhythm for a ruled section's content. */
+.ruled {
   padding-block: var(--section-y);
 }
 

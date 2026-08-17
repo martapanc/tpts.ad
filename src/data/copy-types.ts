@@ -12,10 +12,6 @@ export interface NavItem {
   accent?: boolean;
 }
 
-export interface IndexItem extends NavItem {
-  n: string;
-}
-
 export interface Practice {
   title: string;
   body: string;
@@ -81,7 +77,6 @@ export interface Copy {
     primaryCta: string;
     secondaryCta: string;
   };
-  index: { label: string; items: IndexItem[] };
   practices: { title: string; intro: string; items: Practice[] };
   credentials: Credential[];
   ownWork: { statement: string; statementAccent: string; note: string };

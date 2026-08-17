@@ -8,7 +8,6 @@
 import Base from './Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import Hero from '../components/Hero.astro';
-import PageIndex from '../components/PageIndex.astro';
 import Practices from '../components/Practices.astro';
 import CredentialsBar from '../components/CredentialsBar.astro';
 import OwnWork from '../components/OwnWork.astro';
@@ -33,7 +32,6 @@ const { copy } = Astro.props;
 
   <main id="main">
     <Hero copy={copy} />
-    <PageIndex copy={copy} />
     <Practices copy={copy} />
     <CredentialsBar copy={copy} />
     <OwnWork copy={copy} />

@@ -11,13 +11,12 @@
 export const company = {
   legalName: 'Taylor Pancaldi Technology Services SL',
   shortName: 'TPTS',
-  /** TODO: real NRT once the registration completes. */
-  nrt: 'NRT L-000000-X',
-  city: 'Andorra la Vella',
+  nrt: 'NRT L-721214-X',
+  city: 'Escaldes-Engordany (Andorra)',
   timezone: 'CET',
   /** TODO: confirm the address that goes on the legal notice. */
-  email: 'hola@taylorpancaldi.com',
-  founded: 2026,
+  email: 'info@taylor-pancaldi.com/',
+  founded: 2025,
 } as const;
 
 export const people = {

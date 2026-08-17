@@ -40,7 +40,6 @@ export const copy: Copy = {
     { label: 'Projectes', href: `#${sections.projects}` },
     { label: 'Com treballem', href: `#${sections.hiring}` },
     { label: 'Empresa', href: `#${sections.company}` },
-    { label: 'Contacte', href: `#${sections.contact}`, accent: true },
   ],
 
   hero: {
@@ -53,17 +52,6 @@ export const copy: Copy = {
     meta: 'En remot, CET · experiència prèvia a Sky, Booking.com i plataformes SaaS corporatives',
     primaryCta: 'Contacteu-nos',
     secondaryCta: 'Què fem',
-  },
-
-  index: {
-    label: 'En aquesta pàgina',
-    items: [
-      { n: '01', label: 'Què fem', href: `#${sections.practices}` },
-      { n: '02', label: 'Els nostres projectes', href: `#${sections.projects}` },
-      { n: '03', label: 'Com contractar-nos', href: `#${sections.hiring}` },
-      { n: '04', label: "L'empresa", href: `#${sections.company}` },
-      { n: '05', label: 'Contacte', href: `#${sections.contact}`, accent: true },
-    ],
   },
 
   practices: {
@@ -84,7 +72,7 @@ export const copy: Copy = {
         // English joke — worth a second opinion on whether it lands in Catalan.
         body: "Disseny, operació i suport d'infraestructura amb experiència a escala de broadcast: xarxa, desplegament, monitoratge i còpies de seguretat, mantinguts fiables, segurs i avorrits en el millor sentit de la paraula.",
         leadIn: 'Al capdavant, ',
-        leadName: '[Nom del soci]', // TODO: pending
+        leadName: 'Teo Taylor',
         leadTail: ' — infraestructura i operacions, ex Sky UK.',
       },
     ],
@@ -94,7 +82,7 @@ export const copy: Copy = {
     { pre: 'Hem treballat a ', strong: 'Booking.com' },
     { pre: 'Hem treballat a ', strong: 'Sky' },
     { pre: '', strong: 'SaaS corporatiu · SSO · pagaments' },
-    { pre: 'Clients al ', strong: 'RU · DE · NL · EUA' },
+    { pre: 'Clients al ', strong: 'RU · DE · EUA' },
   ],
 
   ownWork: {
@@ -146,18 +134,25 @@ export const copy: Copy = {
 
   company: {
     title: "L'empresa",
-    body: `${company.legalName} és una societat limitada registrada a ${company.city}. Dos enginyers, dues àrees, una sola entitat contractant.`,
+    // Line breaks are honoured here: one `\n` starts a new line, two leave a
+    // blank line. Anything else wraps normally.
+    body: `${company.legalName} és una societat limitada registrada a ${company.city}.\nDos enginyers, dues àrees, una sola entitat contractant.`,
     rows: [
       { label: 'Entitat', value: company.legalName },
       { label: 'Registre', value: company.nrt, mono: true },
       { label: 'Seu', value: `${company.city} · en remot, ${company.timezone}` },
       {
         label: 'Àrees',
-        value: 'Desenvolupament de producte · infraestructura i operacions',
+        value: 'Disseny i desenvolupament de producte · infraestructura i operacions',
       },
       {
         label: 'Cobertura',
-        value: 'UE · RU · EUA · contractes B2B · CA, EN, ES, IT',
+        value:
+          'Contractes B2B a la UE, el Regne Unit i els EUA (més països possibles)',
+      },
+      {
+        label: 'Idiomes',
+        value: 'Anglès · italià · francès · alemany · castellà · català',
       },
     ],
   },
@@ -169,8 +164,7 @@ export const copy: Copy = {
   },
 
   footer: {
-    copyright: `© ${company.founded} ${company.legalName} · Andorra`,
-    // TODO: these three pages still need to be written, in both languages.
+    copyright: `© ${new Date().getFullYear()} · ${company.legalName} · Andorra`,
     links: [
       { label: 'Avís legal', href: '/avis-legal' },
       { label: 'Privacitat', href: '/privacitat' },
