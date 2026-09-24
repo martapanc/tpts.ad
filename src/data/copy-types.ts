@@ -43,6 +43,34 @@ export interface InvoiceLine {
   amount: string;
 }
 
+/** Decorative sample of an invoicing product's own output — see CaseStudy.astro. */
+export interface InvoiceVisual {
+  kind: 'invoice';
+  brand: string;
+  number: string;
+  lines: InvoiceLine[];
+  totalLabel: string;
+  totalAmount: string;
+}
+
+/** Decorative sample of an asset-tagging product's own output — a QR label. */
+export interface LabelVisual {
+  kind: 'label';
+  org: string;
+  tag: string;
+  name: string;
+}
+
+export interface CaseStudyEntry {
+  title: string;
+  body: string;
+  note: string;
+  link: string;
+  /** Empty string hides the link until the case study page exists. */
+  linkHref: string;
+  visual: InvoiceVisual | LabelVisual;
+}
+
 /**
  * In-page anchor slugs. Each language gets its own so URLs read in the
  * language of the page they belong to.
@@ -81,21 +109,8 @@ export interface Copy {
   practices: { title: string; intro: string; items: Practice[] };
   credentials: Credential[];
   ownWork: { statement: string; statementAccent: string; note: string };
-  caseStudy: {
-    title: string;
-    body: string;
-    note: string;
-    link: string;
-    /** Empty string hides the link until the case study page exists. */
-    linkHref: string;
-    invoice: {
-      brand: string;
-      number: string;
-      lines: InvoiceLine[];
-      totalLabel: string;
-      totalAmount: string;
-    };
-  };
+  /** Own-work projects shown as evidence, in display order. */
+  caseStudies: CaseStudyEntry[];
   hiring: { title: string; intro: string; steps: Step[] };
   company: { title: string; body: string; rows: FactRow[] };
   contact: { title: string; body: string; cta: string };

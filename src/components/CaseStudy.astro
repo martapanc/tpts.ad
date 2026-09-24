@@ -6,44 +6,85 @@ interface Props {
 }
 
 const { copy } = Astro.props;
-const { caseStudy } = copy;
-const { invoice } = caseStudy;
+const { caseStudies } = copy;
+
+/* Three finder patterns — the part that reads as "QR code" even this small —
+   plus a fixed scattering of data modules. Not a real symbol, the same way the
+   invoice figure below is not a real invoice: both are decorative samples of
+   a product's own output. */
+const qrFinders: [number, number][] = [
+  [0, 0],
+  [22, 0],
+  [0, 22],
+];
+const qrModules: [number, number][] = [
+  [9, 1], [12, 2], [9, 4], [15, 5], [10, 7], [18, 8], [13, 9], [9, 10],
+  [20, 11], [11, 12], [16, 13], [22, 14], [9, 15], [14, 16], [19, 17],
+  [10, 18], [17, 19], [12, 20], [21, 21], [9, 22], [15, 23], [11, 25],
+  [18, 24], [13, 26], [20, 25],
+];
 ---
 
 <section class="case full-rule">
   <div class="page">
-    <div class="case__inner ruled">
-      <div class="case__text">
-        <h2 class="case__title">{caseStudy.title}</h2>
-        <p class="lead">{caseStudy.body}</p>
-        <p class="muted case__note">{caseStudy.note}</p>
-        {
-          caseStudy.linkHref && (
-            <a class="case__link" href={caseStudy.linkHref}>
-              {caseStudy.link} <span aria-hidden="true">→</span>
-            </a>
-          )
-        }
-      </div>
-
-      <!-- Decorative sample of the product's own output. -->
-      <figure class="invoice" aria-hidden="true">
-        <div class="invoice__head">
-          <b>{invoice.brand}</b><span>{invoice.number}</span>
-        </div>
-        {
-          invoice.lines.map((line) => (
-            <div class="invoice__row">
-              <span>{line.label}</span>
-              <span>{line.amount}</span>
+    {
+      caseStudies.map((caseStudy, index) => {
+        const { visual } = caseStudy;
+        return (
+          <div class:list={['case__inner ruled', { 'case__inner--divided': index > 0 }]}>
+            <div class="case__text">
+              <h2 class="case__title">{caseStudy.title}</h2>
+              <p class="lead">{caseStudy.body}</p>
+              <p class="muted case__note">{caseStudy.note}</p>
+              {caseStudy.linkHref && (
+                <a class="case__link" href={caseStudy.linkHref}>
+                  {caseStudy.link} <span aria-hidden="true">→</span>
+                </a>
+              )}
             </div>
-          ))
-        }
-        <div class="invoice__total">
-          <span>{invoice.totalLabel}</span><span>{invoice.totalAmount}</span>
-        </div>
-      </figure>
-    </div>
+
+            {visual.kind === 'invoice' ? (
+              <figure class="invoice" aria-hidden="true">
+                <div class="invoice__head">
+                  <b>{visual.brand}</b>
+                  <span>{visual.number}</span>
+                </div>
+                {visual.lines.map((line) => (
+                  <div class="invoice__row">
+                    <span>{line.label}</span>
+                    <span>{line.amount}</span>
+                  </div>
+                ))}
+                <div class="invoice__total">
+                  <span>{visual.totalLabel}</span>
+                  <span>{visual.totalAmount}</span>
+                </div>
+              </figure>
+            ) : (
+              <figure class="label" aria-hidden="true">
+                <svg class="label__qr" viewBox="0 0 29 29" xmlns="http://www.w3.org/2000/svg">
+                  {qrFinders.map(([x, y]) => (
+                    <>
+                      <rect x={x} y={y} width="7" height="7" fill="currentColor" />
+                      <rect x={x + 1} y={y + 1} width="5" height="5" fill="var(--c-paper)" />
+                      <rect x={x + 2} y={y + 2} width="3" height="3" fill="currentColor" />
+                    </>
+                  ))}
+                  {qrModules.map(([x, y]) => (
+                    <rect x={x} y={y} width="1.4" height="1.4" fill="currentColor" />
+                  ))}
+                </svg>
+                <div class="label__text">
+                  <div class="label__tag">{visual.tag}</div>
+                  <div class="label__name">{visual.name}</div>
+                </div>
+                <div class="label__org">{visual.org}</div>
+              </figure>
+            )}
+          </div>
+        );
+      })
+    }
   </div>
 </section>
 
@@ -53,6 +94,10 @@ const { invoice } = caseStudy;
     grid-template-columns: 1fr auto;
     gap: 64px;
     align-items: center;
+  }
+
+  .case__inner--divided {
+    border-top: 1px solid var(--c-rule);
   }
 
   .case__text {
@@ -76,7 +121,8 @@ const { invoice } = caseStudy;
     padding-bottom: 2px;
   }
 
-  .invoice {
+  .invoice,
+  .label {
     margin: 0;
     width: 260px;
     padding: 18px 20px;
@@ -119,6 +165,51 @@ const { invoice } = caseStudy;
     border-top: 1.5px solid var(--c-paper-ink);
     padding-top: 5px;
     font-weight: 500;
+  }
+
+  /* Same card treatment as .invoice (paper, rotation, shadow) so the two read as
+     a pair; the inside mirrors the product's real label layout - QR on the left,
+     a bold monospace tag, the item name, a small mark in the corner. */
+  .label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    position: relative;
+    min-height: 76px;
+  }
+
+  .label__qr {
+    flex: 0 0 46px;
+    width: 46px;
+    height: 46px;
+    color: var(--c-paper-ink);
+  }
+
+  .label__text {
+    min-width: 0;
+  }
+
+  .label__tag {
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: -0.01em;
+  }
+
+  .label__name {
+    color: var(--c-text-3);
+    margin-top: 3px;
+    font-size: 10px;
+  }
+
+  .label__org {
+    position: absolute;
+    right: 14px;
+    bottom: 10px;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--c-paper-ink);
+    opacity: 0.55;
   }
 
   @media (max-width: 860px) {

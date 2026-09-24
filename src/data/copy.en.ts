@@ -89,27 +89,43 @@ export const copy: Copy = {
       'Client engagements take most of our time. The rest goes into our own projects, and that is where the two practices work as one team: ',
     statementAccent:
       'one of us builds the application, the other runs the platform it lives on.',
-    note: 'They are the projects where we choose the constraints, and they are in production – we use them to run the company. FlexInvoice is the current example.',
+    note: 'They are the projects where we choose the constraints, and they are in production – we use them to run the company. FlexInvoice and FlexTag are the current examples.',
   },
 
-  caseStudy: {
-    title: 'FlexInvoice',
-    body: 'The invoicing system we built for our own operations: recurring invoices in two clicks, receipts merged into the final PDF, totals exact by construction. Backend and interface on one side, hosting, deployment and backups on the other.',
-    note: "It's on the site because it shows how we build and run something when the only stakeholder is us.",
-    // TODO: the case study page does not exist yet – the link is hidden until it does.
-    link: 'Read the case study',
-    linkHref: '',
-    invoice: {
-      brand: 'TPTS',
-      number: 'No. 2026-081',
-      lines: [
-        { label: 'Development – July', amount: '€ 7,200.00' },
-        { label: 'Retainer', amount: '€ 1,400.00' },
-      ],
-      totalLabel: 'Total',
-      totalAmount: '€ 8,600.00',
+  // TODO: neither case study page exists yet – both links are hidden until they do.
+  caseStudies: [
+    {
+      title: 'FlexInvoice',
+      body: 'The invoicing system we built for our own operations: recurring invoices in two clicks, receipts merged into the final PDF, totals exact by construction. Backend and interface on one side, hosting, deployment and backups on the other.',
+      note: "It's on the site because it shows how we build and run something when the only stakeholder is us.",
+      link: 'Read the case study',
+      linkHref: '',
+      visual: {
+        kind: 'invoice',
+        brand: 'TPTS',
+        number: 'No. 2026-081',
+        lines: [
+          { label: 'Development – July', amount: '€ 7,200.00' },
+          { label: 'Retainer', amount: '€ 1,400.00' },
+        ],
+        totalLabel: 'Total',
+        totalAmount: '€ 8,600.00',
+      },
     },
-  },
+    {
+      title: 'FlexTag',
+      body: 'The asset register we run our own equipment through: a QR code on every laptop and monitor, a label printed straight from the browser, purchase date and invoice in one place. Backend, interface and the service that talks to the label printer on one side; hosting and deployment on the other.',
+      note: 'The label printer is the part client work rarely asks for all the way through: writing the integration, then proving it against the physical device rather than stopping at the API.',
+      link: 'Read the case study',
+      linkHref: '',
+      visual: {
+        kind: 'label',
+        org: 'TPTS',
+        tag: 'TPTS-LAP-001',
+        name: 'MacBook Pro 14"',
+      },
+    },
+  ],
 
   hiring: {
     title: 'Working with an Andorran company is simpler than it sounds.',

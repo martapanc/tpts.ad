@@ -91,27 +91,43 @@ export const copy: Copy = {
       'Els encàrrecs de client ocupen la major part del nostre temps. La resta va als nostres propis projectes, i és allà on les dues àrees treballen com un sol equip: ',
     statementAccent:
       "una construeix l'aplicació, l'altra fa funcionar la plataforma on viu.",
-    note: 'Són els projectes on les restriccions les triem nosaltres, i estan en producció: els fem servir per gestionar la mateixa empresa. FlexInvoice és el cas actual.',
+    note: 'Són els projectes on les restriccions les triem nosaltres, i estan en producció: els fem servir per gestionar la mateixa empresa. FlexInvoice i FlexTag en són els exemples actuals.',
   },
 
-  caseStudy: {
-    title: 'FlexInvoice',
-    body: 'El sistema de facturació que hem construït per a la nostra pròpia operativa: factures recurrents en dos clics, rebuts integrats al PDF final, totals exactes per construcció. El backend i la interfície en una banda; allotjament, desplegament i còpies de seguretat en l’altra.',
-    note: "És al web perquè mostra com construïm i mantenim una cosa quan l'únic client som nosaltres.",
-    // TODO: the case study page does not exist yet – the link is hidden until it does.
-    link: 'Llegiu el cas pràctic',
-    linkHref: '',
-    invoice: {
-      brand: 'TPTS',
-      number: 'Núm. 2026-081',
-      lines: [
-        { label: 'Desenvolupament – juliol', amount: '7.200,00 €' },
-        { label: 'Retainer', amount: '1.400,00 €' },
-      ],
-      totalLabel: 'Total',
-      totalAmount: '8.600,00 €',
+  // TODO: the case study page does not exist yet – the link is hidden until it does.
+  caseStudies: [
+    {
+      title: 'FlexInvoice',
+      body: 'El sistema de facturació que hem construït per a la nostra pròpia operativa: factures recurrents en dos clics, rebuts integrats al PDF final, totals exactes per construcció. El backend i la interfície en una banda; allotjament, desplegament i còpies de seguretat en l’altra.',
+      note: "És al web perquè mostra com construïm i mantenim una cosa quan l'únic client som nosaltres.",
+      link: 'Llegiu el cas pràctic',
+      linkHref: '',
+      visual: {
+        kind: 'invoice',
+        brand: 'TPTS',
+        number: 'Núm. 2026-081',
+        lines: [
+          { label: 'Desenvolupament – juliol', amount: '7.200,00 €' },
+          { label: 'Retainer', amount: '1.400,00 €' },
+        ],
+        totalLabel: 'Total',
+        totalAmount: '8.600,00 €',
+      },
     },
-  },
+    {
+      title: 'FlexTag',
+      body: "El registre d'actius amb què gestionem el nostre propi equipament: un codi QR a cada portàtil i monitor, una etiqueta impresa directament des del navegador, la data de compra i la factura en un sol lloc. El backend, la interfície i el servei que parla amb la impressora d'etiquetes en una banda; allotjament i desplegament en l'altra.",
+      note: "La impressora d'etiquetes és la part que la feina de client gairebé mai demana fins al final: escriure la integració i després demostrar-la sobre el dispositiu físic, no només sobre l'API.",
+      link: 'Llegiu el cas pràctic',
+      linkHref: '',
+      visual: {
+        kind: 'label',
+        org: 'TPTS',
+        tag: 'TPTS-LAP-001',
+        name: 'MacBook Pro 14"',
+      },
+    },
+  ],
 
   hiring: {
     title: 'Treballar amb una empresa andorrana és més senzill del que sembla.',

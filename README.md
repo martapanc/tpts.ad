@@ -63,8 +63,9 @@ Search the source for `TODO` and `DRAFT`. Currently open:
   infrastructure practice. Once known it belongs in `site.ts`, not the copy files.
 - **Domain** — `astro.config.mjs` assumes `taylorpancaldi.com` for canonical,
   OG and hreflang URLs. These are wrong until it points at the real domain.
-- **FlexInvoice case study** — the page doesn't exist, so `linkHref` is empty in
-  both languages and the link is not rendered. Set it to show the link.
+- **Case study pages** — neither FlexInvoice's nor FlexTag's exists yet, so
+  `linkHref` is empty on both entries in both languages and neither link
+  renders. Set one to show its link.
 - **Legal pages** — `/avis-legal`, `/privacitat`, `/galetes` and their `/en/`
   counterparts are linked but unwritten.
 - **Catalan copy** — a first pass translated from the English concept. The
