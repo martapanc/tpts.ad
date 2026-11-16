@@ -1,5 +1,7 @@
 ---
 import type { Copy } from '../data/copy-types';
+import invoiceImage from '../assets/projects/flexinvoice-invoice.webp';
+import labelImage from '../assets/projects/flextag-label.png';
 
 interface Props {
   copy: Copy;
@@ -8,21 +10,18 @@ interface Props {
 const { copy } = Astro.props;
 const { caseStudies } = copy;
 
-/* Three finder patterns — the part that reads as "QR code" even this small —
-   plus a fixed scattering of data modules. Not a real symbol, the same way the
-   invoice figure below is not a real invoice: both are decorative samples of
-   a product's own output. */
-const qrFinders: [number, number][] = [
-  [0, 0],
-  [22, 0],
-  [0, 22],
-];
-const qrModules: [number, number][] = [
-  [9, 1], [12, 2], [9, 4], [15, 5], [10, 7], [18, 8], [13, 9], [9, 10],
-  [20, 11], [11, 12], [16, 13], [22, 14], [9, 15], [14, 16], [19, 17],
-  [10, 18], [17, 19], [12, 20], [21, 21], [9, 22], [15, 23], [11, 25],
-  [18, 24], [13, 26], [20, 25],
-];
+/* Both images are the products' own output, rendered from made-up data: an
+   invoice from the FlexInvoice rendering engine and a 62 mm label from FlexTag's
+   label renderer. Regenerate them from the products rather than editing them.
+
+   They are served exactly as saved, through a plain <img>. Astro's <Image> would
+   re-encode them as small lossy WebP, which turns the invoice's fine print to
+   mush; lossless at several times the display size stays sharp and is still
+   only about 50 KB. */
+const images = {
+  invoice: { src: invoiceImage, width: 400 },
+  label: { src: labelImage, width: 348 },
+};
 ---
 
 <section class="case full-rule">
@@ -43,44 +42,21 @@ const qrModules: [number, number][] = [
               )}
             </div>
 
-            {visual.kind === 'invoice' ? (
-              <figure class="invoice" aria-hidden="true">
-                <div class="invoice__head">
-                  <b>{visual.brand}</b>
-                  <span>{visual.number}</span>
-                </div>
-                {visual.lines.map((line) => (
-                  <div class="invoice__row">
-                    <span>{line.label}</span>
-                    <span>{line.amount}</span>
-                  </div>
-                ))}
-                <div class="invoice__total">
-                  <span>{visual.totalLabel}</span>
-                  <span>{visual.totalAmount}</span>
-                </div>
-              </figure>
-            ) : (
-              <figure class="label" aria-hidden="true">
-                <svg class="label__qr" viewBox="0 0 29 29" xmlns="http://www.w3.org/2000/svg">
-                  {qrFinders.map(([x, y]) => (
-                    <>
-                      <rect x={x} y={y} width="7" height="7" fill="currentColor" />
-                      <rect x={x + 1} y={y + 1} width="5" height="5" fill="var(--c-paper)" />
-                      <rect x={x + 2} y={y + 2} width="3" height="3" fill="currentColor" />
-                    </>
-                  ))}
-                  {qrModules.map(([x, y]) => (
-                    <rect x={x} y={y} width="1.4" height="1.4" fill="currentColor" />
-                  ))}
-                </svg>
-                <div class="label__text">
-                  <div class="label__tag">{visual.tag}</div>
-                  <div class="label__name">{visual.name}</div>
-                </div>
-                <div class="label__org">{visual.org}</div>
-              </figure>
-            )}
+            <figure class:list={['shot', `shot--${visual.kind}`]}>
+              <img
+                class="shot__image"
+                src={images[visual.kind].src.src}
+                alt={visual.alt}
+                width={images[visual.kind].width}
+                height={Math.round(
+                  (images[visual.kind].width * images[visual.kind].src.height) /
+                    images[visual.kind].src.width,
+                )}
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption class="shot__caption">{visual.caption}</figcaption>
+            </figure>
           </div>
         );
       })
@@ -121,95 +97,38 @@ const qrModules: [number, number][] = [
     padding-bottom: 2px;
   }
 
-  .invoice,
-  .label {
+  .shot {
     margin: 0;
-    width: 260px;
-    padding: 18px 20px;
-    background: var(--c-paper);
-    color: var(--c-paper-ink);
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* Paper on a dark page: the shadow and the slight tilt are what keep a white
+     rectangle from reading as a hole in the layout. */
+  .shot__image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    background: #fff;
     border-radius: var(--radius-md);
-    font-family: var(--font-mono);
-    font-size: 10px;
-    line-height: 1.6;
     box-shadow: 0 16px 40px -14px rgba(0, 0, 0, 0.5);
     transform: rotate(-1deg);
   }
 
-  .invoice__head,
-  .invoice__row,
-  .invoice__total {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
+  .shot--invoice .shot__image {
+    width: 400px;
   }
 
-  .invoice__head {
-    border-bottom: 2px solid var(--c-gold);
-    padding-bottom: 7px;
-    margin-bottom: 8px;
+  .shot--label .shot__image {
+    width: 348px;
   }
 
-  .invoice__head b {
-    font-family: var(--font-display);
-    font-size: 13px;
-    color: var(--c-gold);
-  }
-
-  .invoice__row {
-    border-bottom: 1px solid var(--c-paper-rule);
-    padding-block: 3px;
-  }
-
-  .invoice__total {
-    border-top: 1.5px solid var(--c-paper-ink);
-    padding-top: 5px;
-    font-weight: 500;
-  }
-
-  /* Same card treatment as .invoice (paper, rotation, shadow) so the two read as
-     a pair; the inside mirrors the product's real label layout - QR on the left,
-     a bold monospace tag, the item name, a small mark in the corner. */
-  .label {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    position: relative;
-    min-height: 76px;
-  }
-
-  .label__qr {
-    flex: 0 0 46px;
-    width: 46px;
-    height: 46px;
-    color: var(--c-paper-ink);
-  }
-
-  .label__text {
-    min-width: 0;
-  }
-
-  .label__tag {
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: -0.01em;
-  }
-
-  .label__name {
-    color: var(--c-text-3);
-    margin-top: 3px;
-    font-size: 10px;
-  }
-
-  .label__org {
-    position: absolute;
-    right: 14px;
-    bottom: 10px;
-    font-size: 8px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    color: var(--c-paper-ink);
-    opacity: 0.55;
+  .shot__caption {
+    margin-top: 18px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--c-text-2);
   }
 
   @media (max-width: 860px) {

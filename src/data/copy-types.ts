@@ -38,27 +38,16 @@ export interface FactRow {
   mono?: boolean;
 }
 
-export interface InvoiceLine {
-  label: string;
-  amount: string;
-}
-
-/** Decorative sample of an invoicing product's own output — see CaseStudy.astro. */
-export interface InvoiceVisual {
-  kind: 'invoice';
-  brand: string;
-  number: string;
-  lines: InvoiceLine[];
-  totalLabel: string;
-  totalAmount: string;
-}
-
-/** Decorative sample of an asset-tagging product's own output — a QR label. */
-export interface LabelVisual {
-  kind: 'label';
-  org: string;
-  tag: string;
-  name: string;
+/**
+ * The picture beside a project: a sample of the product's own output. `kind`
+ * picks the image (see CaseStudy.astro); the words around it are per language.
+ */
+export interface ProjectVisual {
+  kind: 'invoice' | 'label';
+  /** Describes the image for screen readers. */
+  alt: string;
+  /** One line under the image saying what it is. */
+  caption: string;
 }
 
 export interface CaseStudyEntry {
@@ -68,7 +57,7 @@ export interface CaseStudyEntry {
   link: string;
   /** Empty string hides the link until the case study page exists. */
   linkHref: string;
-  visual: InvoiceVisual | LabelVisual;
+  visual: ProjectVisual;
 }
 
 /**
