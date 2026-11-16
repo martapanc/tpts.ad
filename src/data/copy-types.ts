@@ -84,7 +84,12 @@ export interface Copy {
   nativeName: string;
 
   sections: Sections;
-  meta: { title: string; description: string };
+  meta: {
+    title: string;
+    description: string;
+    /** Describes the sharing image for screen readers. */
+    ogImageAlt: string;
+  };
   nav: NavItem[];
   hero: {
     titleLine1: string;

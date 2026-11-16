@@ -2,8 +2,9 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
-// TODO: replace with the real production domain once it is registered.
-const SITE = 'https://taylorpancaldi.com';
+// The canonical domain: every canonical, hreflang and sharing URL is built from
+// it. The company's other domain, tpts.ad, should redirect here.
+const SITE = 'https://taylor-pancaldi.com';
 
 export default defineConfig({
   site: SITE,

@@ -27,6 +27,9 @@ const pathFor = (lang: Lang) => page?.paths[lang] ?? languages[lang].path;
 const canonical = new URL(pathFor(copy.lang), Astro.site);
 const others = alternates(copy.lang);
 
+// One sharing image per language, 1200 × 630. See design/og-image.html.
+const ogImage = new URL(`/og-${copy.lang}.png`, Astro.site);
+
 const organisation = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -80,7 +83,13 @@ const organisation = {
     <meta property="og:title" content={meta.title} />
     <meta property="og:description" content={meta.description} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={copy.meta.ogImageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={copy.meta.ogImageAlt} />
 
     <meta name="theme-color" content="#0a1428" />
 

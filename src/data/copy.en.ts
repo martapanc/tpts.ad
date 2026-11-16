@@ -33,6 +33,7 @@ export const copy: Copy = {
     title: `${company.legalName} – Software engineering and IT services`,
     description:
       'Two engineering practices under one Andorran company: product development, and infrastructure design and operations. For clients across the EU, the UK and the United States.',
+    ogImageAlt: `${company.legalName}: software engineering and IT services, from Andorra.`,
   },
 
   nav: [

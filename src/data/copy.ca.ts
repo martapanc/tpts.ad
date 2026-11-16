@@ -33,6 +33,7 @@ export const copy: Copy = {
     title: `${company.legalName} – Enginyeria de programari i serveis informàtics`,
     description:
       "Dues àrees d'enginyeria sota una societat andorrana: desenvolupament de producte, i disseny i operació d'infraestructura. Per a clients de la UE, el Regne Unit i els Estats Units.",
+    ogImageAlt: `${company.legalName}: enginyeria de programari i serveis informàtics, des d'Andorra.`,
   },
 
   nav: [

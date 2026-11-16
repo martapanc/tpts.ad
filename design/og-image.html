@@ -1,0 +1,130 @@
+<!doctype html>
+<!--
+  Source of the sharing images, public/og-ca.png and public/og-en.png.
+
+  Open it in a browser at 1200 × 630 and screenshot it; add ?lang=en for the
+  English one. From the project root, with Chrome:
+
+    chrome --headless=new --hide-scrollbars --window-size=1200,630 \
+      --screenshot=public/og-ca.png "file://$PWD/design/og-image.html"
+    chrome --headless=new --hide-scrollbars --window-size=1200,630 \
+      --screenshot=public/og-en.png "file://$PWD/design/og-image.html?lang=en"
+
+  Colours and fonts mirror src/styles/tokens.css. Keep the headline in step
+  with the hero in the copy files.
+-->
+<html lang="ca">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @font-face {
+        font-family: 'Bricolage';
+        src: url('../node_modules/@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2')
+          format('woff2');
+        font-weight: 200 800;
+      }
+      @font-face {
+        font-family: 'Albert';
+        src: url('../node_modules/@fontsource-variable/albert-sans/files/albert-sans-latin-wght-normal.woff2')
+          format('woff2');
+        font-weight: 100 900;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      html,
+      body {
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+      }
+      body {
+        background: #0a1428;
+        color: #e8ecf4;
+        font-family: 'Albert', system-ui, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 64px 76px 0;
+        -webkit-font-smoothing: antialiased;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-family: 'Bricolage', system-ui, sans-serif;
+        font-weight: 800;
+        font-size: 34px;
+      }
+      h1 {
+        font-family: 'Bricolage', system-ui, sans-serif;
+        font-weight: 800;
+        font-size: 84px;
+        white-space: nowrap;
+        line-height: 1.04;
+        letter-spacing: -0.03em;
+        color: #e3c25c;
+      }
+      h1 .conj {
+        color: #c0d2ef;
+      }
+      .foot {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        font-size: 25px;
+        color: #c0d2ef;
+        padding-bottom: 44px;
+      }
+      .foot b {
+        font-weight: 500;
+        color: #e8ecf4;
+      }
+      .tricolour {
+        display: flex;
+        height: 10px;
+        margin-inline: -76px;
+      }
+      .tricolour span {
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="brand">
+      <svg viewBox="0 0 96 96" width="46" height="46">
+        <polygon points="2,80 22,44 42,80" fill="#3451a1" />
+        <polygon points="52,80 76,34 94,80" fill="#c0392b" />
+        <polygon points="26,80 46,10 68,80" fill="#c9a227" stroke="#0a1428" stroke-width="5" />
+      </svg>
+      <span>TPTS</span>
+    </div>
+
+    <h1><span id="l1"></span><br /><span class="conj" id="conj"></span><span id="l2"></span></h1>
+
+    <div>
+      <div class="foot">
+        <b>Taylor Pancaldi Technology Services SL</b>
+        <span id="place"></span>
+      </div>
+      <div class="tricolour">
+        <span style="background: #3451a1"></span>
+        <span style="background: #c9a227"></span>
+        <span style="background: #c0392b"></span>
+      </div>
+    </div>
+
+    <script>
+      const text = {
+        ca: { l1: 'Enginyeria de programari', conj: 'i ', l2: 'serveis informàtics', place: 'Andorra' },
+        en: { l1: 'Software engineering', conj: 'and ', l2: 'IT services', place: 'Andorra' },
+      };
+      const lang = new URLSearchParams(location.search).get('lang') === 'en' ? 'en' : 'ca';
+      document.documentElement.lang = lang;
+      for (const [id, value] of Object.entries(text[lang])) {
+        document.getElementById(id).textContent = value;
+      }
+    </script>
+  </body>
+</html>
