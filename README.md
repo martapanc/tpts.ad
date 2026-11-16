@@ -5,8 +5,10 @@ Astro static site built from `design/Taylor Pancaldi Landing.dc.html`, **version
 
 | Route | Language |
 | --- | --- |
-| `/` | Catalan — the primary language |
+| `/` | Catalan – the primary language |
 | `/en` | English |
+| `/avis-legal`, `/privacitat`, `/galetes` | Catalan legal pages |
+| `/en/legal-notice`, `/en/privacy`, `/en/cookies` | English legal pages |
 
 ```bash
 npm run dev      # dev server
@@ -24,6 +26,10 @@ npm run check    # astro + TypeScript diagnostics
 | `src/data/copy-types.ts` | The `Copy` interface both files implement. |
 | `src/data/i18n.ts` | Language registry — the default language and the switch. |
 | `src/data/site.ts` | Company facts, shared by both languages. |
+| `src/data/legal.ca.ts`, `legal.en.ts` | **Text of the legal pages**, implementing `legal-types.ts`. |
+| `src/layouts/Legal.astro` | A legal page, in whatever language it is handed. |
+| `src/assets/projects/` | The FlexInvoice and FlexTag previews – the products' own output from made-up data. |
+| `public/og-*.png` | Sharing images, one per language. Source: `design/og-image.html`. |
 | `src/styles/tokens.css` | Colours, type scale, layout metrics taken from 6A. |
 | `src/layouts/Landing.astro` | The page, in whatever language it is handed. |
 | `src/components/` | One component per band of the page, in page order. |
@@ -59,20 +65,20 @@ language gets it.
 
 Search the source for `TODO` and `DRAFT`. Currently open:
 
-- **Partner name** — renders as `[Nom del soci]` / `[Partner name]` in the
-  infrastructure practice. Once known it belongs in `site.ts`, not the copy files.
-- **Domain** — `astro.config.mjs` assumes `taylorpancaldi.com` for canonical,
-  OG and hreflang URLs. These are wrong until it points at the real domain.
-- **Case study pages** — neither FlexInvoice's nor FlexTag's exists yet, so
+- **Domain** – `astro.config.mjs` uses `taylor-pancaldi.com` for canonical,
+  sharing and hreflang URLs. The company's other domain, `tpts.ad`, should
+  redirect to it (or swap them in that one line if `tpts.ad` is to be primary).
+- **Case study pages** – neither FlexInvoice's nor FlexTag's exists yet, so
   `linkHref` is empty on both entries in both languages and neither link
   renders. Set one to show its link.
-- **Legal pages** — `/avis-legal`, `/privacitat`, `/galetes` and their `/en/`
-  counterparts are linked but unwritten.
-- **Catalan copy** — a first pass translated from the English concept. The
+- **Legal pages** – written to match the site as built (no cookies, analytics or
+  forms) but not reviewed by a lawyer. The legal notice gives the town only: the
+  registered street address and the company registry number are still to add.
+  Update the "last updated" date in both `legal.*.ts` files when they change.
+- **Catalan copy** – a first pass translated from the English concept. The
   "avorrits en el millor sentit" line in the infrastructure blurb is flagged
   `DRAFT`; the joke may want rephrasing.
-- **OG image** — no `og:image` yet; `summary_large_image` is declared without one.
-- **Language preference** — a visitor landing on `/` always gets Catalan. If you
+- **Language preference** – a visitor landing on `/` always gets Catalan. If you
   want `Accept-Language` redirection, that needs a server (Vercel middleware or
   a redirect rule); the site is fully static today.
 
