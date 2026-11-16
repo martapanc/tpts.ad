@@ -1,0 +1,134 @@
+---
+/**
+ * A legal page (legal notice, privacy, cookies), in whatever language it is
+ * handed. The six page files under `src/pages` are two lines each, the same
+ * way the two landing pages are.
+ */
+import Base from './Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { languages } from '../data/i18n';
+import { legal as ca } from '../data/legal.ca';
+import { legal as en } from '../data/legal.en';
+import type { Lang } from '../data/copy-types';
+import type { Legal, LegalKey } from '../data/legal-types';
+
+interface Props {
+  lang: Lang;
+  doc: LegalKey;
+}
+
+const { lang, doc: key } = Astro.props;
+
+const all: Record<Lang, Legal> = { ca, en };
+const copy = languages[lang];
+const legal = all[lang];
+const doc = legal.docs[key];
+const paths: Record<Lang, string> = { ca: ca.docs[key].path, en: en.docs[key].path };
+---
+
+<Base copy={copy} page={{ title: doc.title, description: doc.description, paths }}>
+  <a class="skip-link" href="#main">{copy.a11y.skipToContent}</a>
+
+  <SiteHeader copy={copy} paths={paths} />
+
+  <main id="main" class="legal">
+    <div class="page">
+      <article class="legal__inner">
+        <h1 class="legal__title">{doc.title}</h1>
+        <p class="legal__updated">{legal.updated}</p>
+        <p class="legal__intro">{doc.intro}</p>
+
+        {
+          doc.sections.map((section) => (
+            <section class="legal__section">
+              <h2>{section.heading}</h2>
+              {section.paragraphs.map((paragraph) => (
+                <p>{paragraph}</p>
+              ))}
+              {section.list && (
+                <ul>
+                  {section.list.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          ))
+        }
+
+        <a class="btn-quiet legal__back" href={copy.path}>
+          <span aria-hidden="true">←</span>
+          {legal.back}
+        </a>
+      </article>
+    </div>
+  </main>
+
+  <SiteFooter copy={copy} />
+</Base>
+
+<style>
+  .legal__inner {
+    max-width: 720px;
+    padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(3rem, 6vw, 5rem);
+  }
+
+  .legal__title {
+    font-weight: 800;
+    font-size: var(--t-h2-lg);
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+  }
+
+  .legal__updated {
+    margin-top: 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--c-text-2);
+  }
+
+  .legal__intro {
+    margin-top: 28px;
+    color: var(--c-text-3);
+    font-size: var(--t-lead);
+    line-height: 1.6;
+  }
+
+  .legal__section {
+    margin-top: 40px;
+  }
+
+  .legal__section h2 {
+    font-weight: 600;
+    font-size: var(--t-h3);
+    margin-bottom: 10px;
+  }
+
+  .legal__section p,
+  .legal__section li {
+    color: var(--c-text-2);
+  }
+
+  .legal__section p + p {
+    margin-top: 12px;
+  }
+
+  .legal__section ul {
+    margin: 0;
+    padding-left: 1.2em;
+  }
+
+  .legal__section p + ul {
+    margin-top: 12px;
+  }
+
+  .legal__section li + li {
+    margin-top: 6px;
+  }
+
+  .legal__back {
+    display: inline-block;
+    margin-top: 48px;
+  }
+</style>

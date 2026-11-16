@@ -2,15 +2,22 @@
 import Logo from './Logo.astro';
 import { company } from '../data/site';
 import { alternates } from '../data/i18n';
-import type { Copy } from '../data/copy-types';
+import type { Copy, Lang } from '../data/copy-types';
 
 interface Props {
   copy: Copy;
+  /**
+   * Set on any page other than the landing page: where this page lives in each
+   * language. The language switch then leads to the same page, and the section
+   * links lead back to the landing page instead of to anchors that aren't here.
+   */
+  paths?: Record<Lang, string>;
 }
 
-const { copy } = Astro.props;
+const { copy, paths } = Astro.props;
 const { nav, a11y } = copy;
 const others = alternates(copy.lang);
+const navPrefix = paths ? copy.path : '';
 ---
 
 <header class="header">
@@ -24,7 +31,7 @@ const others = alternates(copy.lang);
       <nav class="nav" id="site-nav" aria-label={a11y.mainNav}>
         {
           nav.map((item) => (
-            <a href={item.href} class:list={[{ 'nav__link--accent': item.accent }]}>
+            <a href={`${navPrefix}${item.href}`} class:list={[{ 'nav__link--accent': item.accent }]}>
               {item.label}
             </a>
           ))
@@ -34,7 +41,7 @@ const others = alternates(copy.lang);
       <nav class="langs" aria-label={a11y.languageSwitch}>
         {
           others.map((other) => (
-            <a href={other.path} hreflang={other.htmlLang} lang={other.htmlLang}>
+            <a href={paths?.[other.lang] ?? other.path} hreflang={other.htmlLang} lang={other.htmlLang}>
               <abbr title={other.nativeName}>{other.lang.toUpperCase()}</abbr>
             </a>
           ))

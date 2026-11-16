@@ -6,16 +6,25 @@ import '@fontsource/ibm-plex-mono/500.css';
 import '../styles/global.css';
 import { company } from '../data/site';
 import { allLanguages, alternates, defaultLang, languages } from '../data/i18n';
-import type { Copy } from '../data/copy-types';
+import type { Copy, Lang } from '../data/copy-types';
 
 interface Props {
   copy: Copy;
+  /**
+   * For any page other than the landing page: its own title and description,
+   * and where it lives in each language (for canonical and hreflang).
+   */
+  page?: { title: string; description: string; paths: Record<Lang, string> };
 }
 
-const { copy } = Astro.props;
-const { meta } = copy;
+const { copy, page } = Astro.props;
+const meta = {
+  title: page ? `${page.title} – ${company.shortName}` : copy.meta.title,
+  description: page?.description ?? copy.meta.description,
+};
 
-const canonical = new URL(copy.path, Astro.site);
+const pathFor = (lang: Lang) => page?.paths[lang] ?? languages[lang].path;
+const canonical = new URL(pathFor(copy.lang), Astro.site);
 const others = alternates(copy.lang);
 
 const organisation = {
@@ -30,7 +39,7 @@ const organisation = {
     addressLocality: company.city,
     addressCountry: 'AD',
   },
-  description: meta.description,
+  description: copy.meta.description,
 };
 ---
 
@@ -50,14 +59,14 @@ const organisation = {
         <link
           rel="alternate"
           hreflang={entry.htmlLang}
-          href={new URL(entry.path, Astro.site)}
+          href={new URL(pathFor(entry.lang), Astro.site)}
         />
       ))
     }
     <link
       rel="alternate"
       hreflang="x-default"
-      href={new URL(languages[defaultLang].path, Astro.site)}
+      href={new URL(pathFor(defaultLang), Astro.site)}
     />
 
     <meta property="og:type" content="website" />
