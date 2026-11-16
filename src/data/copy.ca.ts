@@ -38,7 +38,7 @@ export const copy: Copy = {
   nav: [
     { label: 'Què fem', href: `#${sections.practices}` },
     { label: 'Projectes', href: `#${sections.projects}` },
-    { label: 'Com treballem', href: `#${sections.hiring}` },
+    { label: 'Contractació', href: `#${sections.hiring}` },
     { label: 'Empresa', href: `#${sections.company}` },
   ],
 
@@ -49,15 +49,12 @@ export const copy: Copy = {
     titleLine2Prefix: 'i ',
     titleLine2Accent: 'serveis informàtics',
     lead: "Dues àrees d'enginyeria sota una mateixa societat andorrana: desenvolupament de producte, i disseny i operació d'infraestructura.\nCadascuna es contracta per separat per a clients de la UE, el Regne Unit i els Estats Units, i totes dues alhora en els projectes que necessiten les dues coses.",
-    meta: 'En remot, CET · experiència prèvia a Sky, Booking.com i plataformes SaaS corporatives',
     primaryCta: 'Contacteu-nos',
     secondaryCta: 'Què fem',
   },
 
   practices: {
     title: 'Dues àrees.',
-    intro:
-      "Cada àrea té el seu responsable, els seus encàrrecs i el seu contracte. La major part de la feina n'implica només una; quan un projecte necessita el programari i la plataforma que hi ha a sota, ens encarreguem de totes dues.",
     items: [
       {
         title: 'Desenvolupament de producte',
@@ -65,7 +62,7 @@ export const copy: Copy = {
         leadIn: 'Al capdavant, ',
         leadName: people.product.name,
         leadWebsite: people.product.website,
-        leadTail: ' – vuit anys entre Booking.com, Appetize i Resourcify.',
+        leadTail: " – més de vuit anys d'enginyeria full-stack, ex Booking.com.",
       },
       {
         title: 'Infraestructura i operacions',
@@ -74,7 +71,7 @@ export const copy: Copy = {
         body: "Disseny, operació i suport d'infraestructura amb experiència a escala de broadcast: xarxa, desplegament, monitoratge i còpies de seguretat, mantinguts fiables, segurs i avorrits en el millor sentit de la paraula.",
         leadIn: 'Al capdavant, ',
         leadName: people.it.name,
-        leadTail: ' – infraestructura i operacions, ex Sky UK.',
+        leadTail: " – més de nou anys d'infraestructura i operacions, ex Sky UK.",
       },
     ],
   },
@@ -125,7 +122,7 @@ export const copy: Copy = {
   hiring: {
     title: 'Treballar amb una empresa andorrana és més senzill del que sembla.',
     intro:
-      'Com que som residents a Andorra, la contractació laboral directa no és una opció; un contracte de serveis B2B estàndard amb TPTS sí que ho és, i el vostre equip legal no serà el primer a revisar-ne un.',
+      'Un contracte de serveis B2B estàndard amb TPTS ho cobreix tot, i el vostre equip legal no serà el primer a revisar-ne un. Som residents a Andorra, de manera que treballem com a proveïdor de serveis i no com a personal en plantilla.',
     steps: [
       {
         lead: 'Primer,',
@@ -171,6 +168,7 @@ export const copy: Copy = {
     title: 'Consultes i nous encàrrecs',
     body: 'Envieu-nos una descripció breu de la feina: abast, tecnologies i terminis, si en teniu. Si ja sabeu quina àrea us interessa, digueu-nos-ho; si no, ja us ho direm nosaltres. Responem en un termini de dos dies laborables.',
     cta: 'Contacteu-nos',
+    emailLead: 'o escriviu a',
   },
 
   footer: {

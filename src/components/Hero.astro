@@ -19,7 +19,6 @@ const { hero, sections } = copy;
     </h1>
 
     <p class="hero__lead">{hero.lead}</p>
-    <p class="hero__meta">{hero.meta}</p>
 
     <div class="hero__actions">
       <a class="btn" href={`#${sections.contact}`}>{hero.primaryCta}</a>
@@ -57,14 +56,8 @@ const { hero, sections } = copy;
     font-size: var(--t-lead);
     line-height: 1.6;
     max-width: 700px;
-    margin-bottom: 14px;
-    white-space: pre-line;
-  }
-
-  .hero__meta {
-    color: var(--c-text);
-    font-size: var(--t-sm);
     margin-bottom: clamp(1.5rem, 3vw, 2.125rem);
+    white-space: pre-line;
   }
 
   .hero__actions {

@@ -15,7 +15,7 @@ import type { Copy, Sections } from './copy-types';
 const sections: Sections = {
   practices: 'what-we-do',
   projects: 'projects',
-  hiring: 'how-to-hire-us',
+  hiring: 'contracting',
   company: 'company',
   contact: 'contact',
 };
@@ -38,7 +38,7 @@ export const copy: Copy = {
   nav: [
     { label: 'What we do', href: `#${sections.practices}` },
     { label: 'Projects', href: `#${sections.projects}` },
-    { label: 'How we work', href: `#${sections.hiring}` },
+    { label: 'Contracting', href: `#${sections.hiring}` },
     { label: 'Company', href: `#${sections.company}` },
   ],
 
@@ -49,15 +49,12 @@ export const copy: Copy = {
     titleLine2Prefix: 'and ',
     titleLine2Accent: 'IT services',
     lead: 'Two engineering practices under one Andorran company: product development, and infrastructure design and operations.\nEach is contracted on its own for clients across the EU, the UK and the United States, and together on projects that need both.',
-    meta: 'Remote, CET · previously at Sky, Booking.com and enterprise SaaS platforms',
     primaryCta: 'Contact us',
     secondaryCta: 'What we do',
   },
 
   practices: {
     title: 'Two practices.',
-    intro:
-      'Each has its own lead, its own engagements and its own contract. Most work involves one of the two; where a project needs software and the platform under it, we take both on.',
     items: [
       {
         title: 'Product development',
@@ -65,14 +62,14 @@ export const copy: Copy = {
         leadIn: 'Led by ',
         leadName: people.product.name,
         leadWebsite: people.product.website,
-        leadTail: ' – eight years across Booking.com, Appetize and Resourcify.',
+        leadTail: ' – 8+ years of full-stack engineering, ex Booking.com.',
       },
       {
         title: 'Infrastructure and operations',
         body: 'Infrastructure design, operations and support built on broadcast-scale experience – networking, deployment, monitoring and backup, kept reliable, secure and boring in the best possible sense.',
         leadIn: 'Led by ',
         leadName: people.it.name,
-        leadTail: ' – infrastructure and operations, ex Sky UK.',
+        leadTail: ' – 9+ years of infrastructure and operations, ex Sky UK.',
       },
     ],
   },
@@ -123,7 +120,7 @@ export const copy: Copy = {
   hiring: {
     title: 'Working with an Andorran company is simpler than it sounds.',
     intro:
-      "Because we're resident in Andorra, direct employment isn't an option – a standard B2B services agreement with TPTS is, and your legal team won't be the first to review one.",
+      "A standard B2B services agreement with TPTS covers everything, and your legal team won't be the first to review one. We're resident in Andorra, so we work as a contractor rather than as employees.",
     steps: [
       {
         lead: 'First,',
@@ -135,7 +132,7 @@ export const copy: Copy = {
       },
       {
         lead: 'Every month,',
-        body: " one clean itemized invoice, with cross-border handling we've operated for years with UK, EU and US clients.",
+        body: " one clean itemised invoice, with cross-border handling we've operated for years with UK, EU and US clients.",
       },
     ],
   },
@@ -168,6 +165,7 @@ export const copy: Copy = {
     title: 'Enquiries and new engagements',
     body: "Send a short description of the work – scope, stack, timeframe if you have one. Say which practice it concerns if you already know; if not, we'll tell you. We reply within two working days.",
     cta: 'Contact us',
+    emailLead: 'or write to',
   },
 
   footer: {

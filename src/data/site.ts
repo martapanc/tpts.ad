@@ -14,8 +14,8 @@ export const company = {
   nrt: 'NRT L-721214-X',
   city: 'Escaldes-Engordany (Andorra)',
   timezone: 'CET',
-  /** TODO: confirm the address that goes on the legal notice. */
-  email: 'info@taylor-pancaldi.com/',
+  /** Shown on the page and used for the contact button. */
+  email: 'info@taylor-pancaldi.com',
   founded: 2025,
 } as const;
 

@@ -91,18 +91,23 @@ export interface Copy {
     titleLine2Prefix: string;
     titleLine2Accent: string;
     lead: string;
-    meta: string;
     primaryCta: string;
     secondaryCta: string;
   };
-  practices: { title: string; intro: string; items: Practice[] };
+  practices: { title: string; items: Practice[] };
   credentials: Credential[];
   ownWork: { statement: string; statementAccent: string; note: string };
   /** Own-work projects shown as evidence, in display order. */
   caseStudies: CaseStudyEntry[];
   hiring: { title: string; intro: string; steps: Step[] };
   company: { title: string; body: string; rows: FactRow[] };
-  contact: { title: string; body: string; cta: string };
+  contact: {
+    title: string;
+    body: string;
+    cta: string;
+    /** Words before the written-out address, e.g. "or write to". */
+    emailLead: string;
+  };
   footer: { copyright: string; links: NavItem[] };
   a11y: {
     skipToContent: string;

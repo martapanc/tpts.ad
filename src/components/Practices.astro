@@ -13,7 +13,6 @@ const { practices, sections } = copy;
   <div class="page">
     <div class="practices__inner">
       <h2 class="practices__title">{practices.title}</h2>
-      <p class="lead practices__intro">{practices.intro}</p>
 
       {
         practices.items.map((item) => (
@@ -45,11 +44,7 @@ const { practices, sections } = copy;
   .practices__title {
     font-weight: 700;
     font-size: var(--t-h2);
-    margin-bottom: 10px;
-  }
-
-  .practices__intro {
-    margin-bottom: 44px;
+    margin-bottom: 32px;
   }
 
   .practice + .practice {
