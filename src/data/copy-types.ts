@@ -15,10 +15,6 @@ export interface NavItem {
 export interface Practice {
   title: string;
   body: string;
-  leadIn: string;
-  leadName: string;
-  leadWebsite?: string;
-  leadTail: string;
 }
 
 export interface Credential {
@@ -121,5 +117,7 @@ export interface Copy {
     closeMenu: string;
     homeLink: string;
     languageSwitch: string;
+    /** Visible label beside the language links; kept bilingual so it can be found from either page. */
+    languageLabel: string;
   };
 }

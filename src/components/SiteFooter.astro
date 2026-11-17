@@ -1,6 +1,5 @@
 ---
 import Logo from './Logo.astro';
-import { company } from '../data/site';
 import type { Copy } from '../data/copy-types';
 
 interface Props {
@@ -17,8 +16,6 @@ const { footer } = copy;
       <Logo size={24} surface="var(--c-bg-sunk)" />
       <span>{footer.copyright}</span>
     </p>
-
-    <p class="footer__nrt">{company.nrt}</p>
 
     <ul class="footer__links">
       {
@@ -53,11 +50,6 @@ const { footer } = copy;
     display: flex;
     align-items: center;
     gap: 12px;
-  }
-
-  .footer__nrt {
-    font-family: var(--font-mono);
-    font-size: 11px;
   }
 
   .footer__links {

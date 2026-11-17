@@ -9,6 +9,7 @@ Astro static site built from `design/Taylor Pancaldi Landing.dc.html`, **version
 | `/en` | English |
 | `/avis-legal`, `/privacitat`, `/galetes` | Catalan legal pages |
 | `/en/legal-notice`, `/en/privacy`, `/en/cookies` | English legal pages |
+| `/personal`, `/en/personnel` | Personnel page (names, roles, nationalities) |
 
 ```bash
 npm run dev      # dev server
@@ -28,6 +29,8 @@ npm run check    # astro + TypeScript diagnostics
 | `src/data/site.ts` | Company facts, shared by both languages. |
 | `src/data/legal.ca.ts`, `legal.en.ts` | **Text of the legal pages**, implementing `legal-types.ts`. |
 | `src/layouts/Legal.astro` | A legal page, in whatever language it is handed. |
+| `src/data/personnel.ca.ts`, `personnel.en.ts` | **Text of the personnel page** – the only place people are named. |
+| `src/layouts/PersonnelPage.astro` | The personnel page, in whatever language it is handed. |
 | `src/assets/projects/` | The FlexInvoice and FlexTag previews – the products' own output from made-up data. |
 | `public/og-*.png` | Sharing images, one per language. Source: `design/og-image.html`. |
 | `src/styles/tokens.css` | Colours, type scale, layout metrics taken from 6A. |

@@ -9,13 +9,13 @@
  * or renamed key is a type error rather than a silently untranslated page.
  */
 
-import { company, people } from './site';
+import { company } from './site';
 import type { Copy, Sections } from './copy-types';
 
 const sections: Sections = {
   practices: 'que-fem',
   projects: 'projectes',
-  hiring: 'com-contractar',
+  hiring: 'com-treballem',
   company: 'empresa',
   contact: 'contacte',
 };
@@ -32,14 +32,15 @@ export const copy: Copy = {
   meta: {
     title: `${company.legalName} – Enginyeria de programari i serveis informàtics`,
     description:
-      "Dues àrees d'enginyeria sota una societat andorrana: desenvolupament de producte, i disseny i operació d'infraestructura. Per a clients de la UE, el Regne Unit i els Estats Units.",
+      "Lliurament de projectes d'extrem a extrem des d'una empresa amb seu a Andorra: desenvolupament de producte i la infraestructura on funciona. Per a clients del Regne Unit, els Estats Units i la UE.",
     ogImageAlt: `${company.legalName}: enginyeria de programari i serveis informàtics, des d'Andorra.`,
   },
 
   nav: [
     { label: 'Què fem', href: `#${sections.practices}` },
     { label: 'Projectes', href: `#${sections.projects}` },
-    { label: 'Contractació', href: `#${sections.hiring}` },
+    { label: 'Com treballem', href: `#${sections.hiring}` },
+    { label: 'Personal', href: '/personal' },
     { label: 'Empresa', href: `#${sections.company}` },
   ],
 
@@ -49,7 +50,7 @@ export const copy: Copy = {
     titleLine1: 'Enginyeria de programari',
     titleLine2Prefix: 'i ',
     titleLine2Accent: 'serveis informàtics',
-    lead: "Dues àrees d'enginyeria sota una mateixa societat andorrana: desenvolupament de producte, i disseny i operació d'infraestructura.\nCadascuna es contracta per separat per a clients de la UE, el Regne Unit i els Estats Units, i totes dues alhora en els projectes que necessiten les dues coses.",
+    lead: "Lliurament de projectes d'extrem a extrem, des de la primera línia de codi fins a la infraestructura on funciona el producte.\nDues àrees, desenvolupament de producte i infraestructura i operacions, que es contracten per separat o juntes per a clients del Regne Unit, els Estats Units i la UE.",
     primaryCta: 'Contacteu-nos',
     secondaryCta: 'Què fem',
   },
@@ -59,20 +60,13 @@ export const copy: Copy = {
     items: [
       {
         title: 'Desenvolupament de producte',
-        body: "Enginyeria full-stack com a desenvolupadora sènior integrada al vostre equip, o projectes definits lliurats d'extrem a extrem: pagaments, sistemes de preus, SSO, plataformes de comptabilitat.\nTypeScript, React i Next.js, Node.js, Java i Spring Boot, Python, AWS.",
-        leadIn: 'Al capdavant, ',
-        leadName: people.product.name,
-        leadWebsite: people.product.website,
-        leadTail: " – més de vuit anys d'enginyeria full-stack, ex Booking.com.",
+        body: "Projectes definits lliurats d'extrem a extrem, des dels requisits i l'arquitectura fins a la posada en producció, o enginyeria full-stack com a desenvolupadora sènior integrada al vostre equip: pagaments, sistemes de preus, SSO, plataformes de comptabilitat.\nTypeScript, React i Next.js, Node.js, Java i Spring Boot, Python, AWS.",
       },
       {
         title: 'Infraestructura i operacions',
         // DRAFT: "avorrits en el millor sentit" is a direct rendering of the
         // English joke – worth a second opinion on whether it lands in Catalan.
-        body: "Disseny, operació i suport d'infraestructura amb experiència a escala de broadcast: xarxa, desplegament, monitoratge i còpies de seguretat, mantinguts fiables, segurs i avorrits en el millor sentit de la paraula.",
-        leadIn: 'Al capdavant, ',
-        leadName: people.it.name,
-        leadTail: " – més de nou anys d'infraestructura i operacions, ex Sky UK.",
+        body: "La infraestructura on funciona el producte, dissenyada, operada i recolzada durant tot el projecte i després. Amb experiència a escala de broadcast: xarxa, desplegament, monitoratge i còpies de seguretat, mantinguts fiables, segurs i avorrits en el millor sentit de la paraula.",
       },
     ],
   },
@@ -81,7 +75,7 @@ export const copy: Copy = {
     { pre: 'Hem treballat a ', strong: 'Booking.com' },
     { pre: 'Hem treballat a ', strong: 'Sky' },
     { pre: '', strong: 'SaaS corporatiu · SSO · pagaments' },
-    { pre: 'Clients al ', strong: 'RU · DE · EUA' },
+    { pre: 'Clients al ', strong: 'RU · EUA · DE' },
   ],
 
   ownWork: {
@@ -121,21 +115,21 @@ export const copy: Copy = {
   ],
 
   hiring: {
-    title: 'Treballar amb una empresa andorrana és més senzill del que sembla.',
+    title: 'Com treballem.',
     intro:
-      'Un contracte de serveis B2B estàndard amb TPTS ho cobreix tot, i el vostre equip legal no serà el primer a revisar-ne un. Som residents a Andorra, de manera que treballem com a proveïdor de serveis i no com a personal en plantilla.',
+      'Treballem exclusivament en l\'àmbit B2B, mitjançant un contracte de serveis amb TPTS. Les nostres condicions segueixen la pràctica habitual de contractació al Regne Unit, i les adaptem de bon grat a clients d\'altres llocs.',
     steps: [
       {
         lead: 'Primer,',
-        body: " contracteu TPTS SL: un sol acord amb una societat andorrana registrada, on consten l'àrea i la persona que farà la feina.",
+        body: " un contracte de serveis amb TPTS SL, on consten l'àrea i l'abast del projecte.",
       },
       {
         lead: 'Després,',
-        body: " ens integrem al vostre equip o us ho lliurem fet: enginyeria a tarifa diària dins de l'equip, o un projecte amb abast tancat d'extrem a extrem. Ciutadania de la UE, en remot, CET.",
+        body: " us ho lliurem: un projecte amb abast tancat d'extrem a extrem, o enginyeria a tarifa diària dins del vostre equip. En remot, CET.",
       },
       {
         lead: 'Cada mes,',
-        body: ' una sola factura detallada, amb la gestió transfronterera que fa anys que apliquem amb clients del Regne Unit, la UE i els EUA.',
+        body: ' una sola factura detallada. La facturació i els terminis de pagament s\'adapten als vostres requisits.',
       },
     ],
   },
@@ -144,10 +138,9 @@ export const copy: Copy = {
     title: "L'empresa",
     // Line breaks are honoured here: one `\n` starts a new line, two leave a
     // blank line. Anything else wraps normally.
-    body: `${company.legalName} és una societat limitada registrada a ${company.city}.\nDos enginyers, dues àrees, una sola entitat contractant.`,
+    body: `${company.legalName} és una societat limitada amb seu a ${company.city}.\nDues àrees, una sola entitat contractant.`,
     rows: [
       { label: 'Entitat', value: company.legalName },
-      { label: 'Registre', value: company.nrt, mono: true },
       { label: 'Seu', value: `${company.city} · en remot, ${company.timezone}` },
       {
         label: 'Àrees',
@@ -156,7 +149,11 @@ export const copy: Copy = {
       {
         label: 'Cobertura',
         value:
-          'Contractes B2B a la UE, el Regne Unit i els EUA (més països possibles)',
+          'Contractes B2B al Regne Unit, als Estats Units i a la UE (més països possibles)',
+      },
+      {
+        label: 'Viatges',
+        value: 'Regularment, per reunir-nos amb els clients quan escau',
       },
       {
         label: 'Idiomes',
@@ -188,5 +185,6 @@ export const copy: Copy = {
     closeMenu: 'Tanca el menú',
     homeLink: `${company.shortName} – inici`,
     languageSwitch: 'Canvia d’idioma',
+    languageLabel: 'Language / Idioma',
   },
 };

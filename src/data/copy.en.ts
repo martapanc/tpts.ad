@@ -9,13 +9,13 @@
  * or renamed key is a type error rather than a silently untranslated page.
  */
 
-import { company, people } from './site';
+import { company } from './site';
 import type { Copy, Sections } from './copy-types';
 
 const sections: Sections = {
   practices: 'what-we-do',
   projects: 'projects',
-  hiring: 'contracting',
+  hiring: 'how-we-operate',
   company: 'company',
   contact: 'contact',
 };
@@ -32,14 +32,15 @@ export const copy: Copy = {
   meta: {
     title: `${company.legalName} – Software engineering and IT services`,
     description:
-      'Two engineering practices under one Andorran company: product development, and infrastructure design and operations. For clients across the EU, the UK and the United States.',
+      'End-to-end project delivery from a company based in Andorra: product development, and the infrastructure it runs on. For clients in the UK, the United States and the EU.',
     ogImageAlt: `${company.legalName}: software engineering and IT services, from Andorra.`,
   },
 
   nav: [
     { label: 'What we do', href: `#${sections.practices}` },
     { label: 'Projects', href: `#${sections.projects}` },
-    { label: 'Contracting', href: `#${sections.hiring}` },
+    { label: 'How we operate', href: `#${sections.hiring}` },
+    { label: 'Personnel', href: '/en/personnel' },
     { label: 'Company', href: `#${sections.company}` },
   ],
 
@@ -49,7 +50,7 @@ export const copy: Copy = {
     titleLine1: 'Software engineering',
     titleLine2Prefix: 'and ',
     titleLine2Accent: 'IT services',
-    lead: 'Two engineering practices under one Andorran company: product development, and infrastructure design and operations.\nEach is contracted on its own for clients across the EU, the UK and the United States, and together on projects that need both.',
+    lead: 'End-to-end project delivery, from the first line of code to the infrastructure the product runs on.\nTwo practices, product development and infrastructure and operations, contracted on their own or together for clients in the UK, the United States and the EU.',
     primaryCta: 'Contact us',
     secondaryCta: 'What we do',
   },
@@ -59,18 +60,11 @@ export const copy: Copy = {
     items: [
       {
         title: 'Product development',
-        body: 'Full-stack engineering as an embedded senior developer in your team, or defined projects delivered end-to-end – payments, pricing systems, SSO, accounting platforms.\nTypeScript, React and Next.js, Node.js, Java and Spring Boot, Python, AWS.',
-        leadIn: 'Led by ',
-        leadName: people.product.name,
-        leadWebsite: people.product.website,
-        leadTail: ' – 8+ years of full-stack engineering, ex Booking.com.',
+        body: 'Defined projects delivered end-to-end, from requirements and architecture to release, or full-stack engineering as an embedded senior developer in your team – payments, pricing systems, SSO, accounting platforms.\nTypeScript, React and Next.js, Node.js, Java and Spring Boot, Python, AWS.',
       },
       {
         title: 'Infrastructure and operations',
-        body: 'Infrastructure design, operations and support built on broadcast-scale experience – networking, deployment, monitoring and backup, kept reliable, secure and boring in the best possible sense.',
-        leadIn: 'Led by ',
-        leadName: people.it.name,
-        leadTail: ' – 9+ years of infrastructure and operations, ex Sky UK.',
+        body: 'The infrastructure the product runs on, designed, operated and supported through the life of the project and after it. Built on broadcast-scale experience – networking, deployment, monitoring and backup, kept reliable, secure and boring in the best possible sense.',
       },
     ],
   },
@@ -79,7 +73,7 @@ export const copy: Copy = {
     { pre: 'Shipped at ', strong: 'Booking.com' },
     { pre: 'Shipped at ', strong: 'Sky' },
     { pre: 'Enterprise ', strong: 'SaaS · SSO · payments' },
-    { pre: 'Clients in ', strong: 'UK · DE · US' },
+    { pre: 'Clients in ', strong: 'UK · US · DE' },
   ],
 
   ownWork: {
@@ -119,21 +113,21 @@ export const copy: Copy = {
   ],
 
   hiring: {
-    title: 'Working with an Andorran company is simpler than it sounds.',
+    title: 'How we operate.',
     intro:
-      "A standard B2B services agreement with TPTS covers everything, and your legal team won't be the first to review one. We're resident in Andorra, so we work as a contractor rather than as employees.",
+      'We operate exclusively on a B2B basis, through a services agreement with TPTS. Our terms follow standard UK contracting practice, and we are happy to adapt them for clients elsewhere.',
     steps: [
       {
         lead: 'First,',
-        body: ' you contract TPTS SL – one agreement with a registered Andorran company, naming the practice and the engineer doing the work.',
+        body: ' a services agreement with TPTS SL, naming the practice and the scope of the project.',
       },
       {
         lead: 'Then,',
-        body: ' we embed or deliver – day-rate engineering inside your team, or a scoped project end-to-end. EU citizens, remote, CET.',
+        body: ' we deliver – a scoped project end-to-end, or day-rate engineering inside your team. Remote, CET.',
       },
       {
         lead: 'Every month,',
-        body: " one clean itemised invoice, with cross-border handling we've operated for years with UK, EU and US clients.",
+        body: ' one itemised invoice. Billing and payment terms are adaptable to your requirements.',
       },
     ],
   },
@@ -142,10 +136,9 @@ export const copy: Copy = {
     title: 'The company',
     // Line breaks are honoured here: one `\n` starts a new line, two leave a
     // blank line. Anything else wraps normally.
-    body: `${company.legalName} is a Societat Limitada registered in ${company.city}.\nTwo engineers, two practices, one contracting entity.`,
+    body: `${company.legalName} is a limited company based in ${company.city}.\nTwo practices, one contracting entity.`,
     rows: [
       { label: 'Entity', value: company.legalName },
-      { label: 'Registration', value: company.nrt, mono: true },
       { label: 'Base', value: `${company.city} · remote, ${company.timezone}` },
       {
         label: 'Practices',
@@ -153,7 +146,11 @@ export const copy: Copy = {
       },
       {
         label: 'Coverage',
-        value: 'B2B contracts in the EU, the UK and the US so far (more countries possible)',
+        value: 'B2B contracts in the UK, the US and the EU (more countries possible)',
+      },
+      {
+        label: 'Travel',
+        value: 'Regularly, to meet clients as appropriate',
       },
       {
         label: 'Languages',
@@ -185,5 +182,6 @@ export const copy: Copy = {
     closeMenu: 'Close menu',
     homeLink: `${company.shortName} – home`,
     languageSwitch: 'Change language',
+    languageLabel: 'Language / Idioma',
   },
 };
