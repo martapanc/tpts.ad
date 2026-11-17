@@ -12,8 +12,10 @@ export interface Person {
   nationality: string;
   /** Two or three sentences, no more. */
   summary: string;
-  /** Stack or focus areas, one line. */
+  /** The activities they cover, one line. */
   focus: string;
+  /** Languages and tools, one line. Omit when there is nothing to list. */
+  technologies?: string;
   website?: { href: string; label: string };
 }
 
@@ -23,7 +25,7 @@ export interface Personnel {
   title: string;
   description: string;
   intro: string;
-  labels: { nationality: string; focus: string };
+  labels: { nationality: string; focus: string; technologies: string };
   people: Person[];
   back: string;
 }

@@ -52,6 +52,12 @@ const paths: Record<Lang, string> = { ca: ca.path, en: en.path };
                   <dt>{page.labels.focus}</dt>
                   <dd>{person.focus}</dd>
                 </div>
+                {person.technologies && (
+                  <div>
+                    <dt>{page.labels.technologies}</dt>
+                    <dd>{person.technologies}</dd>
+                  </div>
+                )}
               </dl>
               {person.website && (
                 <a class="person__link" href={person.website.href}>

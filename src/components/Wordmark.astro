@@ -1,0 +1,81 @@
+---
+/**
+ * The logo lockup: the mark, the name in the display face, and the rest of the
+ * company name smaller beneath it in the body face. Used in the header and the
+ * footer so the two always match.
+ */
+import Logo from './Logo.astro';
+
+interface Props {
+  /** Background it sits on, for the mark's knockout stroke. */
+  surface?: string;
+  small?: boolean;
+  /** The big lockup in the Company section. */
+  large?: boolean;
+}
+
+const { surface = 'var(--c-bg)', small = false, large = false } = Astro.props;
+---
+
+<span class:list={['wordmark', { 'wordmark--small': small, 'wordmark--large': large }]}>
+  <Logo size={large ? 96 : small ? 24 : 26} surface={surface} />
+  <span class="wordmark__name">
+    <span class="wordmark__main">Taylor Pancaldi</span>
+    <span class="wordmark__sub">Technology Services SL</span>
+  </span>
+</span>
+
+<style>
+  .wordmark {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-family: var(--font-display);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--c-text);
+  }
+
+  .wordmark__name {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .wordmark__main {
+    font-size: 18px;
+  }
+
+  .wordmark__sub {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 11.5px;
+    letter-spacing: 0.04em;
+    color: var(--c-text-2);
+  }
+
+  .wordmark--small .wordmark__main {
+    font-size: 15px;
+  }
+
+  .wordmark--small .wordmark__sub {
+    font-size: 10.5px;
+  }
+
+  .wordmark--large {
+    gap: 22px;
+  }
+
+  .wordmark--large .wordmark__name {
+    gap: 6px;
+  }
+
+  .wordmark--large .wordmark__main {
+    font-size: 40px;
+    letter-spacing: -0.02em;
+  }
+
+  .wordmark--large .wordmark__sub {
+    font-size: 17px;
+  }
+</style>

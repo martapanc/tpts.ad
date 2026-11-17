@@ -1,9 +1,6 @@
 ---
-import Logo from './Logo.astro';
-import { company as companyFacts } from '../data/site';
+import Wordmark from './Wordmark.astro';
 import type { Copy } from '../data/copy-types';
-
-const { shortName } = companyFacts;
 
 interface Props {
   copy: Copy;
@@ -19,12 +16,10 @@ const { company: companyCopy, sections } = copy;
       <div>
         <h2 class="company__title">{companyCopy.title}</h2>
         <p class="lead company__body">{companyCopy.body}</p>
-        {/* Decorative lockup — the mark is aria-hidden inside Logo, and the
-            wordmark repeats the company name already in the heading above,
-            so it is hidden from assistive technology too. */}
+        {/* Decorative lockup, hidden from assistive technology: the company
+            name is already in the heading and the header. */}
         <div class="company__mark" aria-hidden="true">
-          <Logo size={112} />
-          <span class="company__wordmark">{shortName}</span>
+          <Wordmark large />
         </div>
       </div>
 
@@ -71,15 +66,6 @@ const { company: companyCopy, sections } = copy;
     justify-content: center;
     gap: 20px;
     margin-top: 52px;
-  }
-
-  .company__wordmark {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 46px;
-    letter-spacing: -0.02em;
-    line-height: 1;
-    color: var(--c-text);
   }
 
   .facts {
