@@ -27,10 +27,6 @@ const { hero, sections } = copy;
   </div>
 </section>
 
-<div class="tricolour" aria-hidden="true">
-  <span></span><span></span><span></span>
-</div>
-
 <style>
   .hero {
     padding-block: clamp(3rem, 7vw, 5.25rem) clamp(3rem, 6.7vw, 5rem);
@@ -65,24 +61,5 @@ const { hero, sections } = copy;
     align-items: center;
     flex-wrap: wrap;
     gap: clamp(1rem, 2.2vw, 1.625rem);
-  }
-
-  .tricolour {
-    display: flex;
-    height: 3px;
-  }
-
-  .tricolour span {
-    flex: 1;
-  }
-
-  .tricolour span:nth-child(1) {
-    background: var(--c-peak-blue);
-  }
-  .tricolour span:nth-child(2) {
-    background: var(--c-peak-gold);
-  }
-  .tricolour span:nth-child(3) {
-    background: var(--c-peak-red);
   }
 </style>

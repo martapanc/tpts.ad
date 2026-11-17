@@ -23,10 +23,10 @@
   --c-gold-line: rgba(227, 194, 92, 0.45);
   --c-on-gold: #080f1f;
 
-  /* ---- Brand mark (the three peaks) ---- */
-  --c-peak-blue: #3451a1;
-  --c-peak-gold: #c9a227;
-  --c-peak-red: #c0392b;
+  /* ---- Brand mark (the three peaks): deliberately neutral, no national colours ---- */
+  --c-peak-left: #3f5280;
+  --c-peak-right: #7486ab;
+  --c-peak-centre: #c0d2ef;
 
   /* ---- Paper (invoice card) ---- */
   --c-paper: #f7f5ef;
