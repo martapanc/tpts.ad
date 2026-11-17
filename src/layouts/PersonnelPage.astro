@@ -1,0 +1,159 @@
+---
+/**
+ * The personnel page, in whatever language it is handed. The two page files
+ * under `src/pages` are two lines each, like the landing and legal pages.
+ */
+import Base from './Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { languages } from '../data/i18n';
+import { personnel as ca } from '../data/personnel.ca';
+import { personnel as en } from '../data/personnel.en';
+import type { Lang } from '../data/copy-types';
+import type { Personnel } from '../data/personnel-types';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const all: Record<Lang, Personnel> = { ca, en };
+const copy = languages[lang];
+const page = all[lang];
+const paths: Record<Lang, string> = { ca: ca.path, en: en.path };
+---
+
+<Base copy={copy} page={{ title: page.title, description: page.description, paths }}>
+  <a class="skip-link" href="#main">{copy.a11y.skipToContent}</a>
+
+  <SiteHeader copy={copy} paths={paths} />
+
+  <main id="main" class="personnel">
+    <div class="page">
+      <div class="personnel__inner">
+        <h1 class="personnel__title">{page.title}</h1>
+        <p class="personnel__intro">{page.intro}</p>
+
+        {
+          page.people.map((person) => (
+            <article class="person">
+              <h2 class="person__name">{person.name}</h2>
+              <p class="person__role">
+                {person.role}
+                {person.also && <span> · {person.also}</span>}
+              </p>
+              <p class="person__summary">{person.summary}</p>
+              <dl class="person__facts">
+                <div>
+                  <dt>{page.labels.nationality}</dt>
+                  <dd>{person.nationality}</dd>
+                </div>
+                <div>
+                  <dt>{page.labels.focus}</dt>
+                  <dd>{person.focus}</dd>
+                </div>
+              </dl>
+              {person.website && (
+                <a class="person__link" href={person.website.href}>
+                  {person.website.label} <span aria-hidden="true">↗</span>
+                </a>
+              )}
+            </article>
+          ))
+        }
+
+        <a class="btn-quiet personnel__back" href={copy.path}>
+          <span aria-hidden="true">←</span>
+          {page.back}
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <SiteFooter copy={copy} />
+</Base>
+
+<style>
+  .personnel__inner {
+    max-width: 720px;
+    padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(3rem, 6vw, 5rem);
+  }
+
+  .personnel__title {
+    font-weight: 800;
+    font-size: var(--t-h2-lg);
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+  }
+
+  .personnel__intro {
+    margin-top: 20px;
+    color: var(--c-text-3);
+    font-size: var(--t-lead);
+    line-height: 1.6;
+  }
+
+  .person {
+    margin-top: 44px;
+    padding-top: 28px;
+    border-top: 1px solid var(--c-rule);
+  }
+
+  .person__name {
+    font-weight: 700;
+    font-size: var(--t-h3);
+  }
+
+  .person__role {
+    margin-top: 4px;
+    color: var(--c-gold-soft);
+    font-size: var(--t-sm);
+  }
+
+  .person__summary {
+    margin-top: 14px;
+    color: var(--c-text-2);
+  }
+
+  .person__facts {
+    margin: 16px 0 0;
+    font-size: var(--t-sm);
+  }
+
+  .person__facts div {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 0 20px;
+    padding-block: 7px;
+    border-bottom: 1px solid var(--c-rule);
+  }
+
+  .person__facts dt {
+    color: var(--c-text-3);
+  }
+
+  .person__facts dd {
+    margin: 0;
+    color: var(--c-text);
+  }
+
+  .person__link {
+    display: inline-block;
+    margin-top: 14px;
+    color: var(--c-gold-soft);
+    font-size: var(--t-sm);
+    border-bottom: 1px solid var(--c-gold-line);
+    padding-bottom: 2px;
+  }
+
+  .personnel__back {
+    display: inline-block;
+    margin-top: 48px;
+  }
+
+  @media (max-width: 480px) {
+    .person__facts div {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
