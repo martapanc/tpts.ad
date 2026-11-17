@@ -1,7 +1,7 @@
 ---
 import Logo from './Logo.astro';
 import { company } from '../data/site';
-import { alternates } from '../data/i18n';
+import { allLanguages } from '../data/i18n';
 import type { Copy, Lang } from '../data/copy-types';
 
 interface Props {
@@ -16,7 +16,6 @@ interface Props {
 
 const { copy, paths } = Astro.props;
 const { nav, a11y } = copy;
-const others = alternates(copy.lang);
 const navPrefix = paths ? copy.path : '';
 ---
 
@@ -24,29 +23,43 @@ const navPrefix = paths ? copy.path : '';
   <div class="header__inner page">
     <a class="brand" href={copy.path} aria-label={a11y.homeLink}>
       <Logo size={26} />
-      <span>{company.shortName}</span>
+      <span class="brand__name">{company.legalName}</span>
     </a>
 
     <div class="header__end">
-      <nav class="nav" id="site-nav" aria-label={a11y.mainNav}>
-        {
-          nav.map((item) => (
-            <a href={`${navPrefix}${item.href}`} class:list={[{ 'nav__link--accent': item.accent }]}>
-              {item.label}
-            </a>
-          ))
-        }
-      </nav>
+      <div class="menu" id="site-nav">
+        <nav class="nav" aria-label={a11y.mainNav}>
+          {
+            nav.map((item) => (
+              <a
+                href={item.href.startsWith('#') ? `${navPrefix}${item.href}` : item.href}
+                class:list={[{ 'nav__link--accent': item.accent }]}
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
 
-      <nav class="langs" aria-label={a11y.languageSwitch}>
-        {
-          others.map((other) => (
-            <a href={paths?.[other.lang] ?? other.path} hreflang={other.htmlLang} lang={other.htmlLang}>
-              <abbr title={other.nativeName}>{other.lang.toUpperCase()}</abbr>
-            </a>
-          ))
-        }
-      </nav>
+        <div class="langs" role="group" aria-label={a11y.languageSwitch}>
+          <span class="langs__label">{a11y.languageLabel}</span>
+          <span class="langs__options">
+            {
+              allLanguages.map((option) =>
+                option.lang === copy.lang ? (
+                  <span class="langs__current" lang={option.htmlLang} aria-current="true">
+                    {option.nativeName}
+                  </span>
+                ) : (
+                  <a href={paths?.[option.lang] ?? option.path} hreflang={option.htmlLang} lang={option.htmlLang}>
+                    {option.nativeName}
+                  </a>
+                ),
+              )
+            }
+          </span>
+        </div>
+      </div>
 
       <button
         class="burger"
@@ -172,8 +185,13 @@ const navPrefix = paths ? copy.path : '';
     gap: 11px;
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: 20px;
+    font-size: 16px;
+    line-height: 1.15;
     color: var(--c-text);
+  }
+
+  .brand__name {
+    max-width: 20ch;
   }
 
   .header__end {
@@ -185,13 +203,14 @@ const navPrefix = paths ? copy.path : '';
   .nav {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 26px;
     font-size: var(--t-sm);
     color: var(--c-text-2);
   }
 
   .nav a {
     transition: color 0.15s ease;
+    white-space: nowrap;
   }
 
   .nav a:hover {
@@ -209,9 +228,16 @@ const navPrefix = paths ? copy.path : '';
     text-underline-offset: 6px;
   }
 
-  .langs {
+  .menu {
     display: flex;
     align-items: center;
+    gap: 24px;
+  }
+
+  .langs {
+    display: flex;
+    white-space: nowrap;
+    align-items: baseline;
     gap: 10px;
     padding-left: 24px;
     border-left: 1px solid var(--c-rule-strong);
@@ -219,17 +245,35 @@ const navPrefix = paths ? copy.path : '';
     color: var(--c-text-3);
   }
 
+  .langs__label {
+    color: var(--c-text-2);
+  }
+
+  .langs__options {
+    display: flex;
+    gap: 6px;
+  }
+
+  .langs__options > * + *::before {
+    content: '/';
+    margin-right: 6px;
+    color: var(--c-rule-strong);
+  }
+
+  .langs__current {
+    color: var(--c-text);
+    font-weight: 600;
+  }
+
   .langs a {
     transition: color 0.15s ease;
+    text-decoration: underline;
+    text-decoration-color: var(--c-rule-strong);
+    text-underline-offset: 4px;
   }
 
   .langs a:hover {
     color: var(--c-text);
-  }
-
-  .langs abbr {
-    text-decoration: none;
-    letter-spacing: 0.06em;
   }
 
   .burger {
@@ -259,7 +303,7 @@ const navPrefix = paths ? copy.path : '';
     transform: translateY(4.5px);
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 1100px) {
     .header__end {
       gap: 16px;
     }
@@ -268,12 +312,7 @@ const navPrefix = paths ? copy.path : '';
       display: block;
     }
 
-    .langs {
-      padding-left: 0;
-      border-left: 0;
-    }
-
-    .nav {
+    .menu {
       position: absolute;
       inset: 100% 0 auto;
       display: none;
@@ -287,6 +326,17 @@ const navPrefix = paths ? copy.path : '';
 
     .nav--open {
       display: flex;
+    }
+
+    .nav {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+
+    .langs {
+      padding: 18px 0 0;
+      border-left: 0;
     }
 
     .nav a {
